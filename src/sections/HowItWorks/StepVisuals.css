@@ -1,0 +1,412 @@
+/* Step mock-ups shown on the right of each stacked card */
+.sv {
+  position: relative;
+  display: grid;
+  gap: 12px;
+  width: min(330px, 100%);
+  padding: 18px;
+  border-radius: 20px;
+  border: 1px solid var(--stroke-strong);
+  background: linear-gradient(160deg, rgba(40, 80, 190, 0.28), rgba(6, 14, 50, 0.7));
+  backdrop-filter: blur(14px);
+  box-shadow: 0 30px 60px -24px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  text-align: left;
+  font-size: 0.84rem;
+}
+
+.sv small {
+  display: block;
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.sv strong {
+  display: block;
+  font-size: 0.92rem;
+}
+
+.sv__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.sv__row > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.sv__avatar {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--blue), var(--cyan));
+  font-size: 0.74rem;
+  font-weight: 700;
+}
+
+.sv__field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(4, 12, 40, 0.6);
+  border: 1px solid var(--stroke);
+}
+
+.sv__field small {
+  min-width: 58px;
+}
+
+.sv__field span:not(.sv__pill) {
+  flex: 1;
+  font-size: 0.8rem;
+}
+
+.sv__ok {
+  color: var(--green);
+}
+
+.sv__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--sub);
+}
+
+.sv__toggle svg {
+  vertical-align: -2px;
+  color: var(--green);
+}
+
+.sv__switch {
+  position: relative;
+  width: 34px;
+  height: 20px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.14);
+}
+
+.sv__switch b {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #fff;
+}
+
+.sv__switch.is-on {
+  background: var(--blue);
+}
+
+.sv__switch.is-on b {
+  transform: translateX(14px);
+}
+
+.sv__btn {
+  padding: 11px;
+  border-radius: 12px;
+  background: var(--grad-btn);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  text-align: center;
+  font-weight: 600;
+}
+
+.sv__pill {
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.2);
+  border: 1px solid var(--stroke-strong);
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  color: var(--ice);
+}
+
+.sv__pill.positive {
+  color: var(--green);
+  background: rgba(52, 211, 153, 0.12);
+  border-color: transparent;
+}
+
+.sv__big {
+  font-size: 1.5rem;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+/* Deposit */
+.sv__qrwrap {
+  display: grid;
+  grid-template-columns: 108px 1fr;
+  gap: 14px;
+  align-items: center;
+}
+
+.sv__qr {
+  width: 108px;
+  height: 108px;
+  padding: 8px;
+  border-radius: 14px;
+  background: rgba(4, 12, 40, 0.7);
+  border: 1px solid var(--stroke);
+}
+
+.sv__addr {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+}
+
+.sv__addr > span {
+  font-size: 0.86rem;
+  color: var(--ice);
+}
+
+.sv__bar {
+  display: block;
+  height: 5px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.sv__bar i {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--green));
+}
+
+.sv__conf {
+  display: grid;
+  gap: 4px;
+}
+
+/* Pool */
+.sv__plans {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.sv__plan {
+  display: grid;
+  gap: 2px;
+  padding: 10px 8px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--stroke);
+  text-align: center;
+}
+
+.sv__plan strong {
+  font-size: 0.76rem;
+  font-weight: 500;
+}
+
+.sv__plan.is-on {
+  background: rgba(59, 130, 246, 0.25);
+  border-color: var(--blue);
+  box-shadow: 0 0 24px -8px var(--blue);
+}
+
+.sv__slider {
+  position: relative;
+  height: 5px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.sv__slider i {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: 5px;
+  background: var(--blue);
+}
+
+.sv__slider b {
+  position: absolute;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: #fff;
+  border: 4px solid var(--blue);
+}
+
+/* Engine */
+.sv--engine {
+  height: 270px;
+  padding: 0;
+}
+
+.sv__links {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.sv__hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  display: grid;
+  place-items: center;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.35), transparent 70%);
+  animation: sv-pulse 3s ease-in-out infinite;
+}
+
+.sv__node {
+  position: absolute;
+  translate: -50% -50%;
+  border-radius: 50%;
+  box-shadow: 0 0 0 6px rgba(34, 211, 238, 0.08);
+}
+
+.sv__scan {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  translate: -50% 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: rgba(3, 8, 28, 0.7);
+  font-size: 0.62rem;
+  color: var(--ice);
+  white-space: nowrap;
+}
+
+.sv__scan i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 8px var(--green);
+}
+
+@keyframes sv-pulse {
+  50% { scale: 1.1; }
+}
+
+/* Earnings */
+.sv__bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 90px;
+}
+
+.sv__bars i {
+  flex: 1;
+  border-radius: 5px 5px 2px 2px;
+  background: linear-gradient(180deg, var(--cyan), rgba(37, 99, 235, 0.35));
+}
+
+.sv__toast {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(52, 211, 153, 0.1);
+  border: 1px solid rgba(52, 211, 153, 0.25);
+}
+
+.sv__toast > div {
+  flex: 1;
+}
+
+/* Withdraw */
+.sv__steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.sv__step {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding-top: 4px;
+}
+
+.sv__step i {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 255, 255, 0.18);
+  font-size: 0.8rem;
+}
+
+.sv__step.is-done i {
+  background: var(--green);
+  border-color: var(--green);
+  color: #04122e;
+}
+
+.sv__step.is-now i {
+  background: transparent;
+  border-color: var(--cyan);
+  box-shadow: 0 0 14px var(--cyan);
+  animation: sv-pulse 1.6s ease-in-out infinite;
+}
+
+.sv__eta {
+  padding: 8px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--sub);
+}
+
+/* Fixes: inline the shield icon (global svg is display:block) */
+.sv__tf {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sv__tf svg {
+  flex: none;
+  font-size: 1.05rem;
+}
+
+/* Engine mock-up: frameless, no padding, fills the visual column */
+.sv.sv--engine {
+  width: min(360px, 100%);
+  height: 300px;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  backdrop-filter: none;
+  overflow: visible;
+}
+
+.sv--engine .sv__node {
+  background: #0a1640;
+  box-shadow: 0 0 0 5px rgba(34, 211, 238, 0.1), 0 10px 24px -8px rgba(0, 0, 0, 0.7);
+}
+
+.sv--engine .sv__hub {
+  width: 108px;
+  height: 108px;
+}

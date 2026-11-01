@@ -1,0 +1,39 @@
+.page-hero {
+  padding: calc(var(--header-h) + clamp(40px, 6vw, 72px)) 0 clamp(16px, 3vw, 32px);
+}
+
+.page-hero__inner {
+  display: grid;
+  justify-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.page-hero__crumbs {
+  display: flex;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.page-hero__crumbs a:hover {
+  color: var(--ink);
+}
+
+.page-hero__title {
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1.06;
+  letter-spacing: -0.045em;
+  max-width: 18ch;
+}
+
+.page-hero .lead {
+  margin-inline: auto;
+}
+
+.page-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}

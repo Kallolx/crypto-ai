@@ -1,0 +1,142 @@
+.fld {
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+}
+
+.fld__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.fld__top label {
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.fld__top label small {
+  margin-left: 6px;
+  font-weight: 400;
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+
+.fld__top a {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--cyan);
+  transition: color 0.2s;
+}
+
+.fld__top a:hover {
+  color: var(--ice);
+}
+
+.fld__box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 52px;
+  padding: 0 14px;
+  border-radius: 14px;
+  border: 1px solid var(--stroke-strong);
+  background: rgba(4, 12, 40, 0.6);
+  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+}
+
+.fld__box:hover {
+  border-color: rgba(170, 205, 255, 0.4);
+}
+
+.fld__box:focus-within {
+  border-color: var(--blue);
+  background: rgba(6, 16, 52, 0.8);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.18);
+}
+
+.fld.has-error .fld__box {
+  border-color: rgba(251, 113, 133, 0.7);
+  box-shadow: 0 0 0 4px rgba(251, 113, 133, 0.1);
+}
+
+.fld__icon {
+  flex: none;
+  font-size: 1.15rem;
+  color: var(--muted);
+  transition: color 0.25s;
+}
+
+.fld__box:focus-within .fld__icon {
+  color: var(--cyan);
+}
+
+.fld__box input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  background: none;
+  border: 0;
+  outline: none;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.fld__box input::placeholder {
+  color: var(--muted);
+}
+
+/* Remove the browser autofill yellow */
+.fld__box input:-webkit-autofill {
+  -webkit-text-fill-color: var(--ink);
+  transition: background-color 9999s ease-out;
+}
+
+.fld__eye {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 32px;
+  height: 32px;
+  margin-right: -6px;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  color: var(--muted);
+  transition: color 0.2s, background 0.2s;
+}
+
+.fld__eye:hover {
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.fld__error {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+  font-size: 0.78rem;
+  color: var(--red);
+}
+
+/* Select used as a prefix (country code) */
+.fld__prefix {
+  flex: none;
+  height: 100%;
+  margin-left: -4px;
+  padding-right: 6px;
+  border: 0;
+  border-right: 1px solid var(--stroke);
+  background: none;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--ink);
+  outline: none;
+  cursor: pointer;
+}
+
+.fld__prefix option {
+  background: var(--bg-2);
+}

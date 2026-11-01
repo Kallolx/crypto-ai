@@ -1,0 +1,296 @@
+.bento {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(260px, auto);
+  gap: 16px;
+}
+
+.bento__cell--xl { grid-column: span 2; grid-row: span 2; }
+.bento__cell--wide { grid-column: span 2; }
+
+.bento__card {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  height: 100%;
+  padding: 26px;
+  transition: transform 0.5s var(--ease);
+}
+
+.bento__card:hover {
+  transform: translateY(-4px);
+}
+
+.bento__head {
+  display: grid;
+  gap: 8px;
+  justify-items: start;
+}
+
+.bento__head p {
+  font-size: 0.93rem;
+}
+
+.bento__icon {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 6px;
+  border-radius: 13px;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.35), rgba(34, 211, 238, 0.1));
+  border: 1px solid var(--stroke-strong);
+  color: var(--ice);
+  font-size: 1.3rem;
+  box-shadow: 0 10px 24px -10px rgba(59, 130, 246, 0.8);
+}
+
+.bento__tag {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* AI engine, signals sit above the chart (no overlap on any screen) */
+.engine {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex: 1;
+  margin: 0 -26px -26px;
+}
+
+.engine__signals {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 26px;
+}
+
+.engine__signals li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  border-radius: 10px;
+  background: rgba(4, 12, 40, 0.7);
+  border: 1px solid var(--stroke);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+}
+
+.engine__signals b {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.pip {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  box-shadow: 0 0 10px var(--green);
+}
+
+.is-sell .pip {
+  background: var(--red);
+  box-shadow: 0 0 10px var(--red);
+}
+
+.engine__chart {
+  width: 100%;
+  flex: 1;
+  min-height: 180px;
+}
+
+/* Crypto pool */
+.pool {
+  display: grid;
+  gap: 18px;
+  margin-top: auto;
+}
+
+.pool__coins {
+  display: flex;
+}
+
+.pool__coins > span {
+  position: relative;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 3px solid #0a1640;
+}
+
+.pool__coins > span:first-child {
+  margin-left: 0;
+}
+
+.pool__bar {
+  display: flex;
+  gap: 3px;
+  height: 8px;
+}
+
+.pool__bar span {
+  border-radius: 8px;
+}
+
+/* FX */
+.fx {
+  display: grid;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.fx li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 9px 10px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.035);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+}
+
+.fx li span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Token */
+.token-mini {
+  margin: auto auto 0;
+  filter: drop-shadow(0 18px 30px rgba(34, 211, 238, 0.45));
+  transform-style: preserve-3d;
+}
+
+/* Shield */
+.shield {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 110px;
+  height: 110px;
+  margin: auto auto 0;
+  font-size: 3rem;
+  color: var(--cyan);
+}
+
+.shield svg {
+  filter: drop-shadow(0 0 14px rgba(34, 211, 238, 0.7));
+}
+
+.shield__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(34, 211, 238, 0.4);
+  animation: ripple 3s ease-out infinite;
+}
+
+.shield__ring--2 {
+  animation-delay: 1.5s;
+}
+
+@keyframes ripple {
+  from { transform: scale(0.55); opacity: 1; }
+  to { transform: scale(1.35); opacity: 0; }
+}
+
+/* Payouts */
+.payout {
+  display: grid;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.payout__num {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 5vw, 3.6rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.payout__track {
+  height: 6px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.payout__track span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue), var(--cyan));
+}
+
+/* Modules */
+.modules {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.modules li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--stroke);
+  font-size: 0.82rem;
+  color: var(--sub);
+}
+
+.modules svg {
+  color: var(--cyan);
+}
+
+@media (max-width: 1080px) {
+  .bento {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .bento__cell--xl {
+    grid-row: span 1;
+  }
+  .engine__chart {
+    flex: none;
+    height: 200px;
+  }
+}
+
+@media (max-width: 640px) {
+  .bento {
+    grid-template-columns: 1fr;
+    grid-auto-rows: auto;
+    gap: 12px;
+  }
+  .bento__cell--xl,
+  .bento__cell--wide {
+    grid-column: span 1;
+  }
+  .bento__card {
+    padding: 22px;
+    gap: 16px;
+  }
+  .engine {
+    margin: 0 -22px -22px;
+  }
+  .engine__signals {
+    padding: 0 22px;
+  }
+  .engine__chart {
+    min-height: 150px;
+  }
+  .shield,
+  .token-mini {
+    margin-top: 8px;
+  }
+}

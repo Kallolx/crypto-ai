@@ -1,0 +1,52 @@
+/* Design tokens, brand colours, radii, spacing, type */
+:root {
+  --bg-0: #02061a;
+  --bg-1: #050c26;
+  --bg-2: #081436;
+
+  --glass: rgba(16, 32, 82, 0.38);
+  --glass-strong: rgba(20, 40, 102, 0.55);
+  --stroke: rgba(140, 175, 255, 0.13);
+  --stroke-strong: rgba(150, 190, 255, 0.26);
+
+  --ink: #eef4ff;
+  --sub: #a3b5dc;
+  --muted: #6c80ad;
+
+  --blue: #3b82f6;
+  --blue-deep: #1d4ed8;
+  --cyan: #22d3ee;
+  --ice: #9bdcff;
+  --violet: #a5b4fc;
+  --green: #34d399;
+  --red: #fb7185;
+  --gold: #fcd34d;
+
+  --grad-btn: linear-gradient(135deg, #3b7bff 0%, #1d4ed8 55%, #1e3a8a 100%);
+  --grad-text: linear-gradient(100deg, #ffffff 0%, #9bdcff 45%, #6d8bff 100%);
+
+  --r-sm: 10px;
+  --r-md: 16px;
+  --r-lg: 24px;
+  --r-xl: 32px;
+
+  --max: 1220px;
+  --gutter: 16px;
+  --section-y: clamp(36px, 4.5vw, 64px);
+  --ticker-h: 38px;
+  --nav-h: 68px;
+  --header-h: calc(var(--ticker-h) + var(--nav-h) + 12px);
+
+  --font-display: "Sora", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+
+  --shadow-lg: 0 30px 80px -24px rgba(0, 8, 40, 0.85);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (min-width: 640px) {
+  :root {
+    --gutter: 28px;
+  }
+}

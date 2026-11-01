@@ -1,0 +1,113 @@
+.how {
+  padding-bottom: calc(var(--section-y) * 0.5);
+}
+
+/* Each slot is tall so the card stays pinned while the next one scrolls up over it */
+/* Card has a fixed height; each slot adds scroll room so the next card can slide over it.
+   The stack then pulls the following section up by that room, so there is no dead gap. */
+.stack {
+  --card-h: 400px;
+  --room: 18vh;
+  margin-bottom: calc(var(--room) * -1);
+}
+
+.stack__slot {
+  position: sticky;
+  top: calc(var(--header-h) + 28px + var(--i) * 16px);
+  height: calc(var(--card-h) + var(--room));
+}
+
+.stack__card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 32px;
+  height: var(--card-h);
+  padding: clamp(24px, 3.5vw, 44px);
+  border-radius: var(--r-xl);
+  border: 1px solid var(--stroke-strong);
+  background:
+    radial-gradient(600px 400px at 100% 0%, color-mix(in srgb, var(--b) 22%, transparent), transparent 70%),
+    radial-gradient(500px 400px at 0% 100%, color-mix(in srgb, var(--a) 30%, transparent), transparent 70%),
+    linear-gradient(160deg, #0d1d52, #071233 70%);
+  box-shadow: 0 -20px 60px -20px rgba(0, 0, 0, 0.7), 0 40px 80px -30px rgba(0, 8, 40, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform-origin: 50% 0%;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.stack__dim {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: #020617;
+  pointer-events: none;
+}
+
+.stack__copy {
+  display: grid;
+  gap: 16px;
+  justify-items: start;
+}
+
+.stack__num {
+  font-family: var(--font-display);
+  font-size: clamp(3.2rem, 6vw, 5rem);
+  font-weight: 700;
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+  background: linear-gradient(180deg, #fff, color-mix(in srgb, var(--b) 70%, transparent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.stack__copy h3 {
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+}
+
+.stack__copy p {
+  max-width: 46ch;
+  font-size: 1.02rem;
+}
+
+.stack__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.stack__meta li {
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--stroke-strong);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--ice);
+}
+
+/* Visual: product mock-up */
+.stack__visual {
+  display: grid;
+  place-items: center;
+  min-width: 0;
+}
+
+@media (max-width: 820px) {
+  .stack {
+    --card-h: 560px;
+  }
+  .stack__slot {
+    top: calc(var(--header-h) + 16px + var(--i) * 12px);
+  }
+  .stack__card {
+    grid-template-columns: 1fr;
+    align-content: start;
+    gap: 22px;
+  }
+  .stack__meta {
+    display: none;
+  }
+}
