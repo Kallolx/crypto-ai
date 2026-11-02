@@ -58,7 +58,7 @@ function InvestNow() {
       <div className="card__head">
         <div className="card__title">
           <span className="ichip tone-cyan ichip--sm"><RiLineChartLine /></span>
-          <div><h3>Invest now</h3><small>Choose a product, set your amount and continue. You review every detail before anything is charged.</small></div>
+          <div><h3>Invest now</h3><small>Choose a product, set your amount and review before anything is charged.</small></div>
         </div>
         <div className="mini-bal">
           <span className="ichip tone-blue ichip--sm"><RiWallet3Line /></span>
