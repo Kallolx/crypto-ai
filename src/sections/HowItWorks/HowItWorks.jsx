@@ -1,5 +1,4 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef } from "react";
 import SectionHeading from "@/components/ui/SectionHeading/SectionHeading";
 import { steps } from "@/data/content";
 import StepVisual from "./StepVisuals";
@@ -14,38 +13,40 @@ const hues = [
   ["#2563eb", "#a5b4fc"],
 ];
 
-/* One sticky card. As later cards slide over it, it scales down and dims. */
-function StackCard({ step, index, total, progress }) {
-  const start = index / total;
-  const scale = useTransform(progress, [start, 1], [1, 1 - (total - index) * 0.035]);
-  const dim = useTransform(progress, [start, Math.min(start + 1 / total, 1)], [0, index === total - 1 ? 0 : 0.45]);
-  const [a, b] = hues[index % hues.length];
+const clamp = (v) => Math.min(1, Math.max(0, v));
 
-  return (
-    <div className="stack__slot" style={{ "--i": index }}>
-      <motion.article className="stack__card" style={{ scale, "--a": a, "--b": b }}>
-        <motion.div className="stack__dim" style={{ opacity: dim }} aria-hidden="true" />
-
-        <div className="stack__copy">
-          <span className="stack__num">{String(index + 1).padStart(2, "0")}</span>
-          <h3>{step.title}</h3>
-          <p>{step.text}</p>
-          <ul className="stack__meta">
-            {step.meta.map((m) => <li key={m}>{m}</li>)}
-          </ul>
-        </div>
-
-        <div className="stack__visual" aria-hidden="true">
-          <StepVisual index={index} />
-        </div>
-      </motion.article>
-    </div>
-  );
-}
-
+/* Sticky cards pile up as you scroll. Scale and dim are written straight to the DOM
+   (one passive scroll listener that returns early while the section is off screen), so React never re-renders. */
 export default function HowItWorks() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end end"] });
+  const stackRef = useRef(null);
+
+  useEffect(() => {
+    const stack = stackRef.current;
+    if (!stack) return;
+    const cards = [...stack.querySelectorAll(".stack__card")];
+    const dims = cards.map((c) => c.querySelector(".stack__dim"));
+    const total = cards.length;
+
+    const update = () => {
+      const r = stack.getBoundingClientRect();
+      if (r.bottom < -200 || r.top > window.innerHeight + 200) return; // off screen
+      const progress = clamp(-r.top / Math.max(1, r.height - window.innerHeight));
+      cards.forEach((card, i) => {
+        const start = i / total;
+        const t = clamp((progress - start) / (1 - start));
+        card.style.transform = `scale(${1 - t * (total - i) * 0.035})`;
+        const d = i === total - 1 ? 0 : clamp((progress - start) / (1 / total)) * 0.45;
+        dims[i].style.opacity = d;
+      });
+    };
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    update();
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
 
   return (
     <section className="section how" id="how-it-works">
@@ -55,10 +56,29 @@ export default function HowItWorks() {
           title={<>From sign-up to <span className="text-gradient">first payout</span></>}
           lead="Six steps, all handled from your dashboard. Scroll to walk through them."
         />
-        <div className="stack" ref={ref}>
-          {steps.map((step, i) => (
-            <StackCard key={step.title} step={step} index={i} total={steps.length} progress={scrollYProgress} />
-          ))}
+        <div className="stack" ref={stackRef}>
+          {steps.map((step, index) => {
+            const [a, b] = hues[index % hues.length];
+            return (
+              <div className="stack__slot" style={{ "--i": index }} key={step.title}>
+                <article className="stack__card" style={{ "--a": a, "--b": b }}>
+                  <div className="stack__dim" aria-hidden="true" />
+                  <div className="stack__copy">
+                    <span className="stack__num">{String(index + 1).padStart(2, "0")}</span>
+                    <h3>{step.title}</h3>
+                    <p>{step.text}</p>
+                    <ul className="stack__meta">
+                      {step.meta.map((m) => <li key={m}>{m}</li>)}
+                    </ul>
+                  </div>
+
+                  <div className="stack__visual" aria-hidden="true">
+                    <StepVisual index={index} />
+                  </div>
+                </article>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

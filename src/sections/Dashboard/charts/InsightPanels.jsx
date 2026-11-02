@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { RiRobot2Line } from "react-icons/ri";
 import EarningsChart from "./EarningsChart";
 import { bot, team } from "@/data/dashboard";
@@ -30,7 +29,7 @@ export default function InsightPanels() {
         </div>
         <div className="bot__risk">
           <small>Risk level</small>
-          <span className="bot__meter"><motion.i initial={{ width: 0 }} whileInView={{ width: "46%" }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.3 }} /></span>
+          <span className="bot__meter"><i style={{ width: "46%" }} /></span>
           <small className="mono">Balanced</small>
         </div>
       </div>
@@ -44,7 +43,7 @@ export default function InsightPanels() {
           {team.map((t) => (
             <li key={t.level}>
               <span className="team__lvl mono">{t.level}</span>
-              <span className="team__bar"><motion.i initial={{ width: 0 }} whileInView={{ width: `${t.pct}%` }} viewport={{ once: true }} transition={{ duration: 0.9, delay: 0.2 }} /></span>
+              <span className="team__bar"><i style={{ width: `${t.pct}%` }} /></span>
               <span className="team__n mono">{t.members}</span>
               <span className="team__bonus mono positive">+${t.bonus}</span>
             </li>

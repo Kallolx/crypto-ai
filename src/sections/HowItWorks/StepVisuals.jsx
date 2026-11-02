@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { RiCheckLine, RiShieldCheckFill } from "react-icons/ri";
 import CoinIcon from "@/components/ui/CoinIcon/CoinIcon";
 import { LogoMark } from "@/components/ui/Logo/Logo";
@@ -65,7 +64,7 @@ function Deposit() {
           <small>Your deposit address</small>
           <span className="mono">0x7a3F…c91E</span>
           <div className="sv__conf">
-            <span className="sv__bar"><motion.i initial={{ width: 0 }} whileInView={{ width: "100%" }} viewport={{ once: true }} transition={{ duration: 2, delay: 0.4 }} /></span>
+            <span className="sv__bar"><i style={{ width: "100%" }} /></span>
             <small className="mono">12/12 confirmations</small>
           </div>
         </div>
@@ -104,14 +103,9 @@ function Engine() {
   return (
     <div className="sv sv--engine">
       <svg className="sv__links" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-        {nodes.map((n, i) => (
+        {nodes.map((n) => (
           <g key={n.s}>
             <line x1="50" y1="50" x2={n.x} y2={n.y} stroke="rgba(120,190,255,.28)" strokeWidth="0.4" vectorEffect="non-scaling-stroke" />
-            <circle r="1.3" fill="#22d3ee">
-              <animate attributeName="cx" values={`50;${n.x}`} dur={`${2.4 + i * 0.3}s`} repeatCount="indefinite" />
-              <animate attributeName="cy" values={`50;${n.y}`} dur={`${2.4 + i * 0.3}s`} repeatCount="indefinite" />
-              <animate attributeName="opacity" values="1;0" dur={`${2.4 + i * 0.3}s`} repeatCount="indefinite" />
-            </circle>
           </g>
         ))}
       </svg>
@@ -137,7 +131,7 @@ function Earnings() {
       </div>
       <div className="sv__bars">
         {bars.map((h, i) => (
-          <motion.i key={i} initial={{ height: 0 }} whileInView={{ height: `${h}%` }} viewport={{ once: true }} transition={{ delay: 0.2 + i * 0.05, duration: 0.6 }} />
+          <i key={i} style={{ height: `${h}%` }} />
         ))}
       </div>
       <div className="sv__toast">

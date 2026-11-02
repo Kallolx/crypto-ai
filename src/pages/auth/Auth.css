@@ -1,81 +1,45 @@
+/* Auth screens: a compact card under the shared site header */
 .auth {
   display: grid;
-  align-content: center;
-  justify-items: center;
-  gap: 28px;
+  place-items: start center;
   min-height: 100vh;
-  padding: 40px 16px;
-}
-
-.auth__card-wrap {
-  width: min(520px, 100%);
+  padding: calc(var(--header-h) + clamp(24px, 6vw, 56px)) 16px 48px;
 }
 
 .auth__card {
-  padding: clamp(24px, 4vw, 40px);
-  border-radius: 28px;
+  width: min(420px, 100%);
+  padding: clamp(22px, 4vw, 30px);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--stroke);
+  background: rgba(10, 22, 62, 0.72);
+  box-shadow: var(--shadow-lg);
 }
 
 /* ---------- Form pieces ---------- */
 .af {
   display: grid;
-  gap: 20px;
+  gap: 14px;
 }
 
 .af__head {
   display: grid;
-  gap: 10px;
-  justify-items: start;
-}
-
-.af__badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 5px 12px 5px 8px;
-  border-radius: 999px;
-  background: rgba(34, 211, 238, 0.1);
-  border: 1px solid rgba(34, 211, 238, 0.25);
-  font-size: 0.74rem;
-  font-weight: 600;
-  color: var(--cyan);
+  gap: 4px;
+  margin-bottom: 4px;
 }
 
 .af__head h1 {
-  font-size: clamp(1.7rem, 3vw, 2.2rem);
-  letter-spacing: -0.04em;
+  font-size: 1.5rem;
+  letter-spacing: -0.03em;
 }
 
 .af__head p {
-  font-size: 0.94rem;
+  font-size: 0.9rem;
 }
 
 .af__row {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 16px;
-}
-
-.fld__box {
-  min-width: 0;
-}
-
-.fld__prefix {
-  max-width: 96px;
-}
-
-.af__meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   gap: 12px;
-  flex-wrap: wrap;
-  font-size: 0.86rem;
-}
-
-.af__meta a {
-  font-weight: 600;
-  color: var(--cyan);
 }
 
 .af__submit {
@@ -100,78 +64,41 @@
   to { rotate: 360deg; }
 }
 
-.af__note {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  font-size: 0.8rem;
-  color: var(--muted);
-}
-
-.af__note svg {
-  color: var(--green);
-}
-
-.af__divider {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.af__divider::before,
-.af__divider::after {
-  content: "";
-  flex: 1;
-  height: 1px;
-  background: var(--stroke);
-}
-
 .af__alt {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 12px 14px;
-  border-radius: 16px;
-  border: 1px solid var(--stroke);
-  background: rgba(255, 255, 255, 0.03);
-  font-size: 0.9rem;
+  text-align: center;
+  font-size: 0.86rem;
   color: var(--sub);
 }
 
-.af__form-error {
-  padding: 11px 14px;
-  border-radius: 12px;
-  border: 1px solid rgba(251, 113, 133, 0.4);
-  background: rgba(251, 113, 133, 0.08);
-  font-size: 0.86rem;
-  color: #ffc2cb;
+.af__alt a,
+.af__note a {
+  font-weight: 600;
+  color: var(--cyan);
+}
+
+.af__note {
+  text-align: center;
+  font-size: 0.76rem;
+  color: var(--muted);
 }
 
 /* Password strength */
 .pws {
   display: grid;
-  gap: 8px;
-  margin-top: -6px;
+  gap: 6px;
+  margin-top: -4px;
 }
 
 .pws__bars {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 6px;
+  gap: 4px;
 }
 
 .pws__bars i {
-  height: 4px;
-  border-radius: 4px;
+  height: 3px;
+  border-radius: 3px;
   background: rgba(255, 255, 255, 0.1);
-  transition: background 0.3s;
 }
 
 .pws__bars i.on-1 { background: var(--red); }
@@ -183,7 +110,7 @@
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  font-size: 0.76rem;
+  font-size: 0.74rem;
   color: var(--muted);
 }
 
@@ -191,41 +118,38 @@
 .af-done {
   display: grid;
   justify-items: center;
-  gap: 16px;
-  padding: 24px 0;
+  gap: 12px;
+  padding: 12px 0;
   text-align: center;
 }
 
 .af-done__icon {
   display: grid;
   place-items: center;
-  width: 72px;
-  height: 72px;
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: var(--grad-btn);
-  font-size: 2rem;
-  box-shadow: 0 20px 50px -12px rgba(37, 99, 235, 0.8), 0 0 0 10px rgba(59, 130, 246, 0.12);
+  background: rgba(52, 211, 153, 0.12);
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  color: var(--green);
+  font-size: 1.5rem;
 }
 
 .af-done h1 {
-  font-size: 1.7rem;
+  font-size: 1.4rem;
 }
 
 .af-done p {
-  max-width: 36ch;
-}
-
-
-.fld__box {
-  min-width: 0;
+  max-width: 34ch;
+  font-size: 0.9rem;
 }
 
 .fld__prefix {
-  max-width: 96px;
+  max-width: 84px;
 }
 
-@media (max-width: 520px) {
-  .af__row {
+@media (max-width: 480px) {
+  .af__row:not(.af__row--keep) {
     grid-template-columns: minmax(0, 1fr);
   }
 }

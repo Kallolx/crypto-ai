@@ -1,0 +1,247 @@
+/* Portfolio growth chart */
+.pv__chart {
+  height: 290px;
+}
+
+.pv__legend {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  font-size: 0.74rem;
+  color: var(--d-muted);
+}
+
+.pv__legend i {
+  width: 14px;
+  height: 2px;
+  background: var(--d-accent);
+}
+
+.pv__legend i.is-dash {
+  margin-left: 8px;
+  background: repeating-linear-gradient(90deg, #6b7ca6 0 3px, transparent 3px 6px);
+}
+
+/* Account setup row */
+.setup {
+  padding: 18px;
+}
+
+.setup__head {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 14px;
+}
+
+.setup__head h3 {
+  font-size: 1rem;
+}
+
+.setup__head small {
+  font-size: 0.76rem;
+  color: var(--d-muted);
+}
+
+.setup__head .meter {
+  flex: 1;
+  max-width: 320px;
+  margin-left: auto;
+}
+
+.setup__steps {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.setup__step {
+  display: grid;
+  align-content: start;
+  gap: 6px;
+  padding: 14px;
+  border-radius: var(--d-radius-sm);
+  border: 1px solid var(--d-border);
+  background: rgba(0, 0, 0, 0.18);
+  transition: border-color 0.15s;
+}
+
+.setup__step:hover {
+  border-color: var(--d-border-strong);
+}
+
+.setup__step .ichip {
+  margin-bottom: 4px;
+}
+
+.setup__step b {
+  font-size: 0.84rem;
+  font-weight: 600;
+}
+
+.setup__step small {
+  font-size: 0.74rem;
+  line-height: 1.45;
+  color: var(--d-muted);
+}
+
+.setup__go {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: var(--d-cyan);
+}
+
+.setup__step.is-done .setup__go {
+  color: var(--green);
+}
+
+.setup__step.is-next {
+  border-color: rgba(var(--t-cyan), 0.45);
+  background: linear-gradient(160deg, rgba(var(--t-cyan), 0.1), rgba(0, 0, 0, 0.18));
+  box-shadow: 0 0 0 1px rgba(var(--t-cyan), 0.15);
+}
+
+/* Milestones */
+.ranks {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--d-radius-sm);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.ranks > div {
+  display: grid;
+  flex: 1;
+  line-height: 1.3;
+}
+
+.ranks span {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--d-muted);
+}
+
+.ranks b {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: var(--gold);
+}
+
+.ranks .ranks__next {
+  color: #c7d2fe;
+}
+
+.ranks > svg {
+  color: var(--d-muted);
+}
+
+/* Team */
+.team-card__body {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  gap: 16px;
+  padding: 18px;
+}
+
+.team-card__stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.team-card__stats > div {
+  display: grid;
+  gap: 4px;
+  padding: 14px;
+  border-radius: var(--d-radius-sm);
+  border: 1px solid var(--d-border);
+  background: rgba(0, 0, 0, 0.18);
+}
+
+.team-card__stats span {
+  margin-top: 6px;
+  font-size: 0.74rem;
+  color: var(--d-muted);
+}
+
+.team-card__stats b {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.team-card__ref {
+  display: grid;
+  gap: 10px;
+}
+
+.ref-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: var(--d-radius-sm);
+  border: 1px solid rgba(var(--t-cyan), 0.2);
+  background: rgba(var(--t-cyan), 0.05);
+}
+
+.ref-row > div {
+  display: grid;
+  flex: 1;
+  min-width: 0;
+  line-height: 1.35;
+}
+
+.ref-row span {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--d-muted);
+}
+
+.ref-row b {
+  overflow: hidden;
+  font-size: 0.86rem;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 1200px) {
+  .setup__steps {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .team-card__body {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .setup__steps,
+  .team-card__stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .setup__head {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .setup__head .meter {
+    max-width: none;
+    margin: 0;
+  }
+  .pv__chart {
+    height: 220px;
+  }
+  .pv__legend {
+    display: none;
+  }
+}

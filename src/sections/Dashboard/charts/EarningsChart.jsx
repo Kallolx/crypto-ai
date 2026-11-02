@@ -20,7 +20,7 @@ export default function EarningsChart() {
             <XAxis dataKey="label" tickLine={false} axisLine={false} tick={{ fill: "#6c80ad", fontSize: 10 }} interval="preserveStartEnd" minTickGap={30} />
             <Tooltip cursor={{ fill: "rgba(255,255,255,0.05)" }} content={<ChartTooltip format={usd} names={{ value: "Earned" }} />} />
             <ReferenceLine y={avg} stroke="rgba(190,220,255,0.4)" strokeDasharray="4 4" />
-            <Bar dataKey="value" radius={[7, 7, 2, 2]} animationDuration={800}>
+            <Bar dataKey="value" radius={[7, 7, 2, 2]} isAnimationActive={false}>
               {earningsDaily.map((d, i) => (
                 <Cell key={d.label} fill={i === earningsDaily.length - 1 ? "#ffffff" : "url(#eb-fill)"} />
               ))}

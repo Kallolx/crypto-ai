@@ -1,5 +1,4 @@
 import { useMemo, useRef, useState } from "react";
-import { motion } from "framer-motion";
 
 const W = 700;
 const H = 260;
@@ -53,7 +52,7 @@ export default function CalcChart({ amount, days, low, mid, high, chosen }) {
           ))}
           <line x1="0" x2={W} y1={g.y(amount)} y2={g.y(amount)} stroke="rgba(190,220,255,.3)" strokeDasharray="5 5" vectorEffect="non-scaling-stroke" />
 
-          <motion.path key={`b${days}${amount}`} d={g.band} fill="url(#cch-band)" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }} />
+          <path d={g.band} fill="url(#cch-band)" />
           <path d={g.lineLow} fill="none" stroke="rgba(165,180,252,.55)" strokeWidth="1.2" vectorEffect="non-scaling-stroke" />
           <path d={g.lineHigh} fill="none" stroke="rgba(34,211,238,.55)" strokeWidth="1.2" vectorEffect="non-scaling-stroke" />
           <path d={g.lineSel} fill="none" stroke="url(#cch-line)" strokeWidth="2.8" strokeLinecap="round" vectorEffect="non-scaling-stroke" />

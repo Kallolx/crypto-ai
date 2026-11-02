@@ -48,9 +48,9 @@ export default function PortfolioChart() {
             <XAxis dataKey="label" tickLine={false} axisLine={false} tick={{ fill: "#6c80ad", fontSize: 11 }} minTickGap={28} interval="preserveStartEnd" />
             <YAxis tickLine={false} axisLine={false} width={54} tick={{ fill: "#6c80ad", fontSize: 11 }} tickFormatter={compact} domain={["dataMin - 600", "dataMax + 400"]} />
             <Tooltip cursor={{ stroke: "rgba(190,220,255,0.35)", strokeDasharray: "3 4" }} content={<ChartTooltip format={usd} names={{ value: "Portfolio", deposits: "Deposited" }} />} />
-            <Area type="monotone" dataKey="deposits" stroke="rgba(165,180,252,0.6)" strokeWidth={1.5} strokeDasharray="4 4" fill="none" dot={false} activeDot={false} />
+            <Area type="monotone" dataKey="deposits" stroke="rgba(165,180,252,0.6)" strokeWidth={1.5} strokeDasharray="4 4" fill="none" dot={false} activeDot={false} isAnimationActive={false} />
             <Area type="monotone" dataKey="value" stroke="url(#pv-stroke)" strokeWidth={3} fill="url(#pv-fill)" dot={false}
-              activeDot={{ r: 6, fill: "#0b1a46", stroke: "#22d3ee", strokeWidth: 3 }} animationDuration={900} />
+              activeDot={{ r: 6, fill: "#0b1a46", stroke: "#22d3ee", strokeWidth: 3 }} isAnimationActive={false} />
           </AreaChart>
         </ResponsiveContainer>
       </div>

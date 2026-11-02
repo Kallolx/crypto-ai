@@ -28,18 +28,11 @@
   position: absolute;
   border-radius: 50%;
   border: 1px solid rgba(155, 220, 255, 0.14);
-  animation: token-pulse 4s ease-out infinite;
 }
 
 .token__rings span:nth-child(1) { width: 260px; height: 260px; }
-.token__rings span:nth-child(2) { width: 330px; height: 330px; animation-delay: 1.3s; }
-.token__rings span:nth-child(3) { width: 400px; height: 400px; animation-delay: 2.6s; }
-
-@keyframes token-pulse {
-  0% { opacity: 0; transform: scale(0.85); }
-  40% { opacity: 1; }
-  100% { opacity: 0; transform: scale(1.1); }
-}
+.token__rings span:nth-child(2) { width: 330px; height: 330px; }
+.token__rings span:nth-child(3) { width: 400px; height: 400px; }
 
 .token__specs {
   display: grid;

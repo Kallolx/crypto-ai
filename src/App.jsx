@@ -1,9 +1,9 @@
+import { lazy, Suspense } from "react";
 import { Routes, Route, useLocation } from "react-router-dom";
-import SmoothScroll from "@/components/layout/SmoothScroll";
+import ScrollToTop from "@/components/layout/ScrollToTop";
 import Background from "@/components/layout/Background/Background";
 import Header from "@/components/layout/Header/Header";
 import Footer from "@/components/layout/Footer/Footer";
-import Cursor from "@/components/ui/Cursor/Cursor";
 import Home from "@/pages/Home";
 import PricingPage from "@/pages/PricingPage";
 import TokenPage from "@/pages/TokenPage";
@@ -12,18 +12,22 @@ import SignIn from "@/pages/auth/SignIn";
 import SignUp from "@/pages/auth/SignUp";
 import ForgotPassword from "@/pages/auth/ForgotPassword";
 
-// Auth screens use their own split layout, without the site header and footer
+// Investor area (sidebar layout + charts) loads only when visited
+const DashboardApp = lazy(() => import("@/app/DashboardApp"));
+
+// Auth screens skip the footer; the dashboard has its own header and sidebar
 const AUTH_PATHS = ["/login", "/signup", "/forgot-password"];
 
 export default function App() {
   const { pathname } = useLocation();
   const isAuth = AUTH_PATHS.includes(pathname);
+  const isApp = pathname.startsWith("/dashboard");
 
   return (
-    <SmoothScroll>
+    <>
+      <ScrollToTop />
       <Background />
-      <Cursor />
-      {!isAuth && <Header />}
+      {!isApp && <Header />}
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -35,10 +39,11 @@ export default function App() {
           <Route path="/terms" element={<LegalPage doc="terms" />} />
           <Route path="/privacy" element={<LegalPage doc="privacy" />} />
           <Route path="/risk" element={<LegalPage doc="risk" />} />
+          <Route path="/dashboard/*" element={<Suspense fallback={null}><DashboardApp /></Suspense>} />
           <Route path="*" element={<Home />} />
         </Routes>
       </main>
-      {!isAuth && <Footer />}
-    </SmoothScroll>
+      {!isAuth && !isApp && <Footer />}
+    </>
   );
 }

@@ -18,7 +18,7 @@ const pairLabel = { BTC: "BTC/USDT", ETH: "ETH/USDT", SOL: "SOL/USDT", BNB: "BNB
 export default function Terminal() {
   const [symbol, setSymbol] = useState("BTC");
   const [tf, setTf] = useState("15m");
-  const quotes = useLivePrices(1800);
+  const quotes = useLivePrices();
   const m = useMarket(symbol, tf);
   const up = m.change >= 0;
 

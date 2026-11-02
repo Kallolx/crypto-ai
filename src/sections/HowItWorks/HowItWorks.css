@@ -2,7 +2,6 @@
   padding-bottom: calc(var(--section-y) * 0.5);
 }
 
-/* Each slot is tall so the card stays pinned while the next one scrolls up over it */
 /* Card has a fixed height; each slot adds scroll room so the next card can slide over it.
    The stack then pulls the following section up by that room, so there is no dead gap. */
 .stack {
@@ -34,7 +33,6 @@
   box-shadow: 0 -20px 60px -20px rgba(0, 0, 0, 0.7), 0 40px 80px -30px rgba(0, 8, 40, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.08);
   transform-origin: 50% 0%;
   overflow: hidden;
-  will-change: transform;
 }
 
 .stack__dim {
@@ -42,6 +40,7 @@
   inset: 0;
   z-index: 5;
   background: #020617;
+  opacity: 0;
   pointer-events: none;
 }
 

@@ -1,9 +1,8 @@
 import { useId, useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { RiEyeLine, RiEyeOffLine, RiErrorWarningLine } from "react-icons/ri";
 import "./Field.css";
 
-/* Labelled input with leading icon, password reveal, optional prefix (e.g. country code) and animated error. */
+/* Labelled input with leading icon, password reveal, optional prefix (e.g. country code) and inline error. */
 export default function Field({ label, hint, icon: Icon, error, type = "text", action, prefix, className = "", ...rest }) {
   const id = useId();
   const [show, setShow] = useState(false);
@@ -23,19 +22,17 @@ export default function Field({ label, hint, icon: Icon, error, type = "text", a
         {prefix}
         <input id={id} type={isPw && show ? "text" : type} aria-invalid={!!error} {...rest} />
         {isPw && (
-          <button type="button" className="fld__eye" onClick={() => setShow(!show)} aria-label={show ? "Hide password" : "Show password"} data-cursor="hover">
+          <button type="button" className="fld__eye" onClick={() => setShow(!show)} aria-label={show ? "Hide password" : "Show password"}>
             {show ? <RiEyeOffLine /> : <RiEyeLine />}
           </button>
         )}
       </div>
-      <AnimatePresence initial={false}>
-        {error && (
-          <motion.p className="fld__error" role="alert" initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }}>
-            <RiErrorWarningLine />
-            {error}
-          </motion.p>
-        )}
-      </AnimatePresence>
+      {error && (
+        <p className="fld__error" role="alert">
+          <RiErrorWarningLine />
+          {error}
+        </p>
+      )}
     </div>
   );
 }

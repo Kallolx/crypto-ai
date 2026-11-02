@@ -15,7 +15,7 @@ export default function Sparkline({ data, color = "#22d3ee", height = 36 }) {
               <stop offset="100%" stopColor={color} stopOpacity={0} />
             </linearGradient>
           </defs>
-          <Area type="monotone" dataKey="v" stroke={color} strokeWidth={2} fill={`url(#${id})`} dot={false} isAnimationActive animationDuration={800} />
+          <Area type="monotone" dataKey="v" stroke={color} strokeWidth={2} fill={`url(#${id})`} dot={false} isAnimationActive={false} />
         </AreaChart>
       </ResponsiveContainer>
     </div>

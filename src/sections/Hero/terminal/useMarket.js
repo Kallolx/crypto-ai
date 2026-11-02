@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useMemo } from "react";
 import { markets } from "@/data/markets";
 
-/* Simulated market feed for the hero terminal: candles that keep forming, a jittering
-   order book and a trade tape. Swap for a real WebSocket when the backend exists. */
+/* Simulated market snapshot for the hero terminal: candles, an order book and a trade tape. Swap for a real WebSocket when the backend exists. */
 export const TIMEFRAMES = ["1m", "5m", "15m", "1H", "4H"];
 const TF_VOL = { "1m": 0.6, "5m": 1, "15m": 1.5, "1H": 2.2, "4H": 3.2 };
 const CANDLES = 64;
@@ -68,53 +67,9 @@ function init(symbol, tf) {
   };
 }
 
-function tick(s) {
-  const base = baseOf(s.symbol);
-  const vol = base * 0.0011 * TF_VOL[s.tf];
-  const drift = (Math.random() - 0.47) * vol;
-  const last = s.candles[s.candles.length - 1];
-  const c = last.c + drift;
-  const n = s.n + 1;
-
-  let candles;
-  if (n % 10 === 0) {
-    const fresh = { o: last.c, h: Math.max(last.c, c), l: Math.min(last.c, c), c, v: rand() };
-    candles = [...s.candles.slice(1), fresh];
-  } else {
-    const upd = { ...last, c, h: Math.max(last.h, c), l: Math.min(last.l, c), v: last.v + Math.random() * 6 };
-    candles = [...s.candles.slice(0, -1), upd];
-  }
-
-  const jitter = (arr) => arr.map((v) => Math.min(120, Math.max(8, v * (0.82 + Math.random() * 0.36))));
-  const trade = {
-    id: n,
-    side: drift >= 0 ? "buy" : "sell",
-    price: c,
-    size: +(Math.random() * 1.8 + 0.05).toFixed(3),
-    t: new Date(),
-  };
-
-  return {
-    ...s,
-    n,
-    dir: Math.sign(drift),
-    candles,
-    price: c,
-    step: stepOf(c),
-    askSizes: jitter(s.askSizes),
-    bidSizes: jitter(s.bidSizes),
-    trades: [trade, ...s.trades].slice(0, 10),
-  };
-}
-
+/* Snapshot only: the chart is rebuilt when symbol/timeframe change but never ticks on its own */
 export default function useMarket(symbol, tf) {
-  const [state, setState] = useState(() => init(symbol, tf));
-
-  useEffect(() => {
-    setState(init(symbol, tf));
-    const id = setInterval(() => setState((s) => tick(s)), 800);
-    return () => clearInterval(id);
-  }, [symbol, tf]);
+  const state = useMemo(() => init(symbol, tf), [symbol, tf]);
 
   const { candles, price } = state;
   const high = Math.max(...candles.map((c) => c.h));

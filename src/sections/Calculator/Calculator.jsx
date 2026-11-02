@@ -2,8 +2,7 @@ import { useMemo, useState } from "react";
 import { RiInformationLine, RiArrowUpSFill } from "react-icons/ri";
 import GlassCard from "@/components/ui/GlassCard/GlassCard";
 import SectionHeading from "@/components/ui/SectionHeading/SectionHeading";
-import Reveal from "@/components/ui/Reveal";
-import CountUp from "@/components/ui/CountUp";
+import Amount from "@/components/ui/Amount";
 import { plans } from "@/data/plans";
 import { simulate, scenarioRates, isForex, BOT_FEE, PRINCIPAL_FEE, CAP_MULTIPLE } from "./simulate";
 import CalcChart from "./CalcChart";
@@ -68,7 +67,7 @@ export default function Calculator() {
           title={<>Model your <span className="text-gradient">outcome</span></>}
           lead="Pick a plan, amount and horizon, then compare conservative, mid and optimistic scenarios, with compounding, the earnings cap and fees."
         />
-        <Reveal>
+        <div>
           <GlassCard strong className="calc">
             {/* ---------- inputs ---------- */}
             <div className="calc__inputs">
@@ -138,15 +137,15 @@ export default function Calculator() {
               <div className="co__head">
                 <div>
                   <span className="cf__label">Estimated profit · {days === 365 ? "1 year" : `${days} days`}</span>
-                  <CountUp className="co__profit text-gradient" to={profit} prefix="$" decimals={2} />
+                  <Amount className="co__profit text-gradient" to={profit} prefix="$" decimals={2} />
                 </div>
                 <span className="co__roi positive"><RiArrowUpSFill />{roi.toFixed(1)}% ROI</span>
               </div>
 
               <div className="co__stats">
-                <div><small>End balance</small><CountUp to={balance} prefix="$" decimals={2} /></div>
-                <div><small>Avg per day</small><CountUp to={perDay} prefix="$" decimals={2} /></div>
-                <div><small>Net payout{botFee || exitFee ? " (after fees)" : ""}</small><CountUp to={net} prefix="$" decimals={2} /></div>
+                <div><small>End balance</small><Amount to={balance} prefix="$" decimals={2} /></div>
+                <div><small>Avg per day</small><Amount to={perDay} prefix="$" decimals={2} /></div>
+                <div><small>Net payout{botFee || exitFee ? " (after fees)" : ""}</small><Amount to={net} prefix="$" decimals={2} /></div>
               </div>
 
               {capHit && (
@@ -174,7 +173,7 @@ export default function Calculator() {
               </p>
             </div>
           </GlassCard>
-        </Reveal>
+        </div>
       </div>
     </section>
   );

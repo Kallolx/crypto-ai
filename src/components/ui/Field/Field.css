@@ -1,6 +1,6 @@
 .fld {
   display: grid;
-  gap: 8px;
+  gap: 6px;
   min-width: 0;
 }
 
@@ -12,39 +12,35 @@
 }
 
 .fld__top label {
-  font-size: 0.86rem;
-  font-weight: 600;
-  color: var(--ink);
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--sub);
 }
 
 .fld__top label small {
   margin-left: 6px;
   font-weight: 400;
-  font-size: 0.74rem;
+  font-size: 0.72rem;
   color: var(--muted);
 }
 
 .fld__top a {
-  font-size: 0.8rem;
-  font-weight: 600;
+  font-size: 0.78rem;
+  font-weight: 500;
   color: var(--cyan);
-  transition: color 0.2s;
-}
-
-.fld__top a:hover {
-  color: var(--ice);
 }
 
 .fld__box {
   display: flex;
   align-items: center;
-  gap: 10px;
-  height: 52px;
-  padding: 0 14px;
-  border-radius: 14px;
+  gap: 8px;
+  min-width: 0;
+  height: 42px;
+  padding: 0 12px;
+  border-radius: 10px;
   border: 1px solid var(--stroke-strong);
-  background: rgba(4, 12, 40, 0.6);
-  transition: border-color 0.25s, box-shadow 0.25s, background 0.25s;
+  background: rgba(4, 12, 40, 0.55);
+  transition: border-color 0.2s;
 }
 
 .fld__box:hover {
@@ -53,24 +49,16 @@
 
 .fld__box:focus-within {
   border-color: var(--blue);
-  background: rgba(6, 16, 52, 0.8);
-  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.18);
 }
 
 .fld.has-error .fld__box {
   border-color: rgba(251, 113, 133, 0.7);
-  box-shadow: 0 0 0 4px rgba(251, 113, 133, 0.1);
 }
 
 .fld__icon {
   flex: none;
-  font-size: 1.15rem;
+  font-size: 1.05rem;
   color: var(--muted);
-  transition: color 0.25s;
-}
-
-.fld__box:focus-within .fld__icon {
-  color: var(--cyan);
 }
 
 .fld__box input {
@@ -80,7 +68,7 @@
   background: none;
   border: 0;
   outline: none;
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   color: var(--ink);
 }
 
@@ -98,26 +86,23 @@
   display: grid;
   place-items: center;
   flex: none;
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   margin-right: -6px;
   border-radius: 8px;
-  font-size: 1.1rem;
+  font-size: 1.05rem;
   color: var(--muted);
-  transition: color 0.2s, background 0.2s;
 }
 
 .fld__eye:hover {
   color: var(--ink);
-  background: rgba(255, 255, 255, 0.06);
 }
 
 .fld__error {
   display: flex;
   align-items: center;
   gap: 6px;
-  overflow: hidden;
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   color: var(--red);
 }
 
@@ -130,8 +115,8 @@
   border: 0;
   border-right: 1px solid var(--stroke);
   background: none;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: 0.85rem;
+  font-weight: 500;
   color: var(--ink);
   outline: none;
   cursor: pointer;

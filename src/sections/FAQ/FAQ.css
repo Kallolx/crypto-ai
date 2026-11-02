@@ -27,8 +27,6 @@
   border-radius: var(--r-md);
   border: 1px solid var(--stroke);
   background: rgba(16, 32, 82, 0.3);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
   transition: border-color 0.3s, background 0.3s;
 }
 

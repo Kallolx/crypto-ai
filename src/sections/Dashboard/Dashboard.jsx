@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
 import {
   RiDashboardLine, RiStackLine, RiDownload2Line, RiUpload2Line, RiTeamLine, RiExchangeLine, RiFileChartLine,
   RiCoinsLine, RiAddLine, RiArrowRightUpLine, RiNotification3Line, RiArrowUpSFill, RiSearchLine,
@@ -7,8 +6,7 @@ import {
 import Button from "@/components/ui/Button/Button";
 import GlassCard from "@/components/ui/GlassCard/GlassCard";
 import SectionHeading from "@/components/ui/SectionHeading/SectionHeading";
-import Reveal from "@/components/ui/Reveal";
-import CountUp from "@/components/ui/CountUp";
+import Amount from "@/components/ui/Amount";
 import Logo from "@/components/ui/Logo/Logo";
 import CoinIcon from "@/components/ui/CoinIcon/CoinIcon";
 import PortfolioChart from "./charts/PortfolioChart";
@@ -35,7 +33,7 @@ export default function Dashboard() {
           lead="Deposits, profits, affiliate bonuses, withdrawals and token staking, tracked side by side in real time."
         />
 
-        <Reveal y={50}>
+        <div>
           <GlassCard strong className="dash">
             <aside className="dash__side">
               <div className="dash__brand"><Logo size={28} /></div>
@@ -71,16 +69,9 @@ export default function Dashboard() {
 
               <div className="dash__wallets">
                 {wallets.map((w, i) => (
-                  <motion.div
-                    key={w.label}
-                    className="wallet"
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.15 + i * 0.08 }}
-                  >
+                  <div key={w.label} className="wallet">
                     <span className="wallet__label">{w.label}</span>
-                    <CountUp
+                    <Amount
                       className="wallet__value"
                       to={w.value}
                       prefix={w.unit ? "" : "$"}
@@ -93,7 +84,7 @@ export default function Dashboard() {
                       <span className="wallet__change">Available to invest</span>
                     )}
                     <Sparkline data={sparks[w.label]} color={i === 2 ? "#a5b4fc" : "#22d3ee"} />
-                  </motion.div>
+                  </div>
                 ))}
               </div>
 
@@ -137,7 +128,7 @@ export default function Dashboard() {
               </div>
             </div>
           </GlassCard>
-        </Reveal>
+        </div>
         <p className="dash__note">Design preview with sample data.</p>
       </div>
     </section>

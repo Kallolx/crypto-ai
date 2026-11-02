@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import {
   RiRobot2Line, RiCoinsLine, RiGlobalLine, RiShieldCheckLine, RiTimerFlashLine, RiLayoutGridLine,
   RiArrowUpSFill, RiArrowDownSFill, RiDashboardLine, RiWallet3Line, RiHandCoinLine, RiTeamLine,
@@ -6,7 +5,6 @@ import {
 } from "react-icons/ri";
 import GlassCard from "@/components/ui/GlassCard/GlassCard";
 import SectionHeading from "@/components/ui/SectionHeading/SectionHeading";
-import Reveal from "@/components/ui/Reveal";
 import CoinIcon from "@/components/ui/CoinIcon/CoinIcon";
 import { LogoMark } from "@/components/ui/Logo/Logo";
 import { site } from "@/config/site";
@@ -39,9 +37,9 @@ export default function Products() {
           lead={`From automated signal execution to managed pools and the ${site.token.symbol} token, everything connects inside your account.`}
         />
 
-        <Reveal stagger={0.08} className="bento">
+        <div className="bento">
           {/* AI engine */}
-          <Reveal.Item className="bento__cell bento__cell--xl">
+          <div className="bento__cell bento__cell--xl">
             <GlassCard className="bento__card">
               <Head icon={RiRobot2Line} tag="01 · Core technology" title="AI Trading Bot"
                 text="Scans crypto and forex markets around the clock, generates trade decisions and executes them automatically, inside strict, pre-set risk limits." />
@@ -54,32 +52,32 @@ export default function Products() {
                 <EngineCandles />
               </div>
             </GlassCard>
-          </Reveal.Item>
+          </div>
 
           {/* Crypto pool */}
-          <Reveal.Item className="bento__cell bento__cell--wide">
+          <div className="bento__cell bento__cell--wide">
             <GlassCard className="bento__card">
               <Head icon={RiCoinsLine} tag="02 · Managed pool" title="Crypto Pool"
                 text="Diversified digital-asset strategies run by automated models with human oversight." />
               <div className="pool">
                 <div className="pool__coins">
                   {["BTC", "ETH", "BNB", "SOL", "USDT"].map((c, i) => (
-                    <motion.span key={c} whileHover={{ y: -6, scale: 1.08 }} style={{ zIndex: 5 - i }}>
+                    <span key={c} style={{ zIndex: 5 - i }}>
                       <CoinIcon symbol={c} size={46} />
-                    </motion.span>
+                    </span>
                   ))}
                 </div>
                 <div className="pool__bar" aria-hidden="true">
                   {[["#f7931a", 38], ["#627eea", 26], ["#f3ba2f", 14], ["#14f195", 12], ["#26a17b", 10]].map(([c, w]) => (
-                    <motion.span key={c} style={{ background: c }} initial={{ width: 0 }} whileInView={{ width: `${w}%` }} viewport={{ once: true }} transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }} />
+                    <span key={c} style={{ background: c, width: `${w}%` }} />
                   ))}
                 </div>
               </div>
             </GlassCard>
-          </Reveal.Item>
+          </div>
 
           {/* FX */}
-          <Reveal.Item className="bento__cell">
+          <div className="bento__cell">
             <GlassCard className="bento__card">
               <Head icon={RiGlobalLine} tag="03 · Forex" title="FX Alpha Pool" />
               <ul className="fx">
@@ -91,20 +89,20 @@ export default function Products() {
                 ))}
               </ul>
             </GlassCard>
-          </Reveal.Item>
+          </div>
 
           {/* Token */}
-          <Reveal.Item className="bento__cell">
+          <div className="bento__cell">
             <GlassCard className="bento__card">
               <Head tag="04 · Utility" title={`${site.token.symbol} Token`} text="Subscriptions, fee benefits & staking." />
-              <motion.div className="token-mini" animate={{ rotateY: [-25, 25, -25] }} transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}>
+              <div className="token-mini">
                 <LogoMark size={86} />
-              </motion.div>
+              </div>
             </GlassCard>
-          </Reveal.Item>
+          </div>
 
           {/* Security */}
-          <Reveal.Item className="bento__cell">
+          <div className="bento__cell">
             <GlassCard className="bento__card">
               <Head tag="Security" title="Cold storage & multi-sig" />
               <div className="shield">
@@ -113,31 +111,31 @@ export default function Products() {
                 <RiShieldCheckLine />
               </div>
             </GlassCard>
-          </Reveal.Item>
+          </div>
 
           {/* Payouts */}
-          <Reveal.Item className="bento__cell">
+          <div className="bento__cell">
             <GlassCard className="bento__card">
               <Head icon={RiTimerFlashLine} tag="Withdrawals" title="Fast USDT payouts" text="From $10, straight to your wallet." />
               <div className="payout">
                 <span className="payout__num text-gradient">96h</span>
-                <span className="payout__track"><motion.span initial={{ width: 0 }} whileInView={{ width: "72%" }} viewport={{ once: true }} transition={{ duration: 1.6, delay: 0.3 }} /></span>
+                <span className="payout__track"><span style={{ width: "72%" }} /></span>
               </div>
             </GlassCard>
-          </Reveal.Item>
+          </div>
 
           {/* Modules */}
-          <Reveal.Item className="bento__cell bento__cell--wide">
+          <div className="bento__cell bento__cell--wide">
             <GlassCard className="bento__card">
               <Head icon={RiLayoutGridLine} tag="Investor dashboard" title="Every module, one login" />
               <ul className="modules">
                 {modules.map(([Icon, label]) => (
-                  <motion.li key={label} whileHover={{ y: -3 }}><Icon />{label}</motion.li>
+                  <li key={label}><Icon />{label}</li>
                 ))}
               </ul>
             </GlassCard>
-          </Reveal.Item>
-        </Reveal>
+          </div>
+        </div>
       </div>
     </section>
   );

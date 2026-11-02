@@ -10,14 +10,13 @@
   color: var(--muted);
 }
 
-/* Segmented control with sliding pill (framer layoutId) */
+/* Segmented control */
 .seg {
   display: inline-flex;
   padding: 5px;
   border-radius: 999px;
   border: 1px solid var(--stroke-strong);
   background: rgba(8, 18, 52, 0.6);
-  backdrop-filter: blur(12px);
 }
 
 .seg__btn {
@@ -74,11 +73,6 @@
   gap: 16px;
   height: 100%;
   padding: 28px 24px;
-  transition: transform 0.5s var(--ease);
-}
-
-.plan:hover {
-  transform: translateY(-6px);
 }
 
 .plan__head {
@@ -175,11 +169,6 @@
   background:
     conic-gradient(from var(--angle), transparent 0 20%, #60a5fa, #22d3ee, #a5b4fc, transparent 55% 100%),
     linear-gradient(var(--stroke-strong), var(--stroke-strong));
-  animation: plan-border 6s linear infinite;
-}
-
-@keyframes plan-border {
-  to { --angle: 360deg; }
 }
 
 .pricing__foot {

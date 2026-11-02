@@ -14,11 +14,6 @@
   gap: 18px;
   height: 100%;
   padding: 26px;
-  transition: transform 0.5s var(--ease);
-}
-
-.bento__card:hover {
-  transform: translateY(-4px);
 }
 
 .bento__head {
@@ -189,16 +184,11 @@
   inset: 0;
   border-radius: 50%;
   border: 1px solid rgba(34, 211, 238, 0.4);
-  animation: ripple 3s ease-out infinite;
 }
 
 .shield__ring--2 {
-  animation-delay: 1.5s;
-}
-
-@keyframes ripple {
-  from { transform: scale(0.55); opacity: 1; }
-  to { transform: scale(1.35); opacity: 0; }
+  inset: -16px;
+  opacity: 0.45;
 }
 
 /* Payouts */

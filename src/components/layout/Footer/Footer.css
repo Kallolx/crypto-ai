@@ -34,13 +34,12 @@
   background: var(--glass);
   color: var(--sub);
   font-size: 1.1rem;
-  transition: color 0.25s, border-color 0.25s, transform 0.25s;
+  transition: color 0.25s, border-color 0.25s;
 }
 
 .footer__socials a:hover {
   color: var(--ink);
   border-color: var(--stroke-strong);
-  transform: translateY(-2px);
 }
 
 .footer__col h4 {

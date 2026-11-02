@@ -207,21 +207,7 @@
 
 /* Portfolio chart */
 
-
-
-
-
-
-
 /* Donut */
-
-
-
-
-
-
-
-
 
 /* Transactions */
 .tx {
@@ -353,9 +339,6 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
 }
-
-
-
 
 .insights__foot {
   display: flex;
@@ -607,7 +590,6 @@
   border-radius: 12px;
   border: 1px solid var(--stroke-strong);
   background: rgba(5, 12, 40, 0.94);
-  backdrop-filter: blur(10px);
   box-shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.8);
   font-size: 0.74rem;
   color: var(--sub);

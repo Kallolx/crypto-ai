@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { RiCheckLine, RiArrowRightUpLine, RiFireLine, RiBitCoinLine, RiGlobalLine } from "react-icons/ri";
 import GlassCard from "@/components/ui/GlassCard/GlassCard";
 import Button from "@/components/ui/Button/Button";
@@ -31,20 +30,9 @@ export default function PricingPlans() {
         <span className="pricing__hint">{type === "crypto" ? "Daily distribution · 4X cap" : "Weekly or monthly cycles · $30 bot fee"}</span>
       </div>
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={type}
-          className={`pricing__grid pricing__grid--${list.length}`}
-          initial="hidden"
-          animate="show"
-          exit="exit"
-          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.07 } }, exit: { opacity: 0, transition: { duration: 0.15 } } }}
-        >
+      <div className={`pricing__grid pricing__grid--${list.length}`}>
           {list.map((p) => (
-            <motion.div
-              key={p.id}
-              variants={{ hidden: { opacity: 0, y: 30, filter: "blur(8px)" }, show: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } }}
-            >
+            <div key={p.id}>
               <GlassCard strong={p.featured} className={`plan ${p.featured ? "plan--featured" : ""}`}>
                 <div className="plan__head">
                   <span className="plan__name">{p.name}</span>
@@ -68,10 +56,9 @@ export default function PricingPlans() {
                   Choose {p.name}
                 </Button>
               </GlassCard>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
-      </AnimatePresence>
+      </div>
     </>
   );
 }

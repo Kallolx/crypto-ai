@@ -18,7 +18,6 @@
   border-radius: 999px;
   border: 1px solid var(--stroke-strong);
   background: rgba(20, 40, 102, 0.45);
-  backdrop-filter: blur(12px);
   font-size: 0.85rem;
   color: var(--sub);
 }
@@ -38,6 +37,10 @@
   line-height: 1.06;
   letter-spacing: -0.045em;
   max-width: 17ch;
+}
+
+.hero__title-line {
+  display: block;
 }
 
 .hero__lead {
@@ -76,12 +79,10 @@
 /* ---------- Stage ---------- */
 .hero__stage {
   margin-top: clamp(32px, 5vw, 56px);
-  perspective: 1400px;
 }
 
 .hero__frame {
   position: relative;
-  transform-origin: 50% 0%;
 }
 
 .hero__glow {
@@ -89,9 +90,7 @@
   inset: 10% 8% -6%;
   z-index: -1;
   background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.55), transparent 65%);
-  filter: blur(50px);
 }
-
 
 @media (max-width: 560px) {
   .hero__badge {

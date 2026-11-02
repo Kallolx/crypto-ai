@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { RiMailLine, RiMailSendLine, RiArrowRightUpLine, RiLockUnlockLine, RiArrowLeftLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
+import { RiMailSendLine, RiArrowLeftLine } from "react-icons/ri";
 import AuthLayout from "./AuthLayout";
 import Field from "@/components/ui/Field/Field";
 import Button from "@/components/ui/Button/Button";
@@ -24,28 +24,24 @@ export default function ForgotPassword() {
   return (
     <AuthLayout>
       {sent ? (
-        <motion.div className="af-done" initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }}>
+        <div className="af-done">
           <span className="af-done__icon"><RiMailSendLine /></span>
           <h1>Check your inbox</h1>
           <p>If an account exists for <b>{email}</b>, a reset link is on its way. It expires in 30 minutes.</p>
-          <Button to="/login" variant="glass" icon={RiArrowLeftLine}>Back to sign in</Button>
-        </motion.div>
+          <Button to="/login" variant="glass" size="sm" icon={RiArrowLeftLine}>Back to sign in</Button>
+        </div>
       ) : (
         <form className="af" onSubmit={submit} noValidate>
           <div className="af__head">
-            <span className="af__badge"><RiLockUnlockLine />Account recovery</span>
             <h1>Forgot password?</h1>
-            <p>Enter the email on your account and we'll send you a link to set a new password.</p>
+            <p>Enter your email and we'll send you a reset link.</p>
           </div>
-          <Field label="Email" type="email" icon={RiMailLine} placeholder="you@example.com" autoComplete="email" value={email}
+          <Field label="Email" type="email" placeholder="you@example.com" autoComplete="email" value={email}
             onChange={(e) => { setEmail(e.target.value); setError(undefined); }} error={error} />
-          <Button type="submit" size="lg" block className="af__submit" disabled={loading} icon={loading ? undefined : RiArrowRightUpLine}>
+          <Button type="submit" block className="af__submit" disabled={loading}>
             {loading ? <span className="af__spin" aria-label="Sending" /> : "Send reset link"}
           </Button>
-          <div className="af__alt">
-            <span>Back to your account?</span>
-            <Button to="/login" variant="glass" size="sm">Sign in</Button>
-          </div>
+          <p className="af__alt">Remembered it? <Link to="/login">Sign in</Link></p>
         </form>
       )}
     </AuthLayout>

@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { motion } from "framer-motion";
 import { RiInformationLine, RiTimeLine, RiMailLine, RiArrowRightUpLine, RiCheckLine } from "react-icons/ri";
 import PageHero from "@/sections/PageHero/PageHero";
 import GlassCard from "@/components/ui/GlassCard/GlassCard";
@@ -11,10 +10,6 @@ import "./LegalPage.css";
 const tabs = [["terms", "Terms", "/terms"], ["privacy", "Privacy", "/privacy"], ["risk", "Risk", "/risk"]];
 const slug = (t) => t.toLowerCase().replace(/[^a-z0-9]+/g, "-");
 
-const list = { hidden: {}, show: { transition: { staggerChildren: 0.06 } } };
-const item = { hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } } };
-
-/* Animations run on mount (not on scroll) so the content is always visible */
 export default function LegalPage({ doc }) {
   const d = legal[doc];
   const others = tabs.filter(([k]) => k !== doc);
@@ -36,16 +31,16 @@ export default function LegalPage({ doc }) {
             <span><RiMailLine />{site.email}</span>
           </div>
 
-          <motion.div key={doc} className="legal__glance" variants={list} initial="hidden" animate="show">
+          <div className="legal__glance">
             {d.glance.map(([k, v]) => (
-              <motion.div key={k} variants={item}>
+              <div key={k}>
                 <GlassCard className="legal__fact">
                   <small>{k}</small>
                   <strong>{v}</strong>
                 </GlassCard>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </div>
 
           <div className="legal__body">
             <aside className="legal__toc">
@@ -57,9 +52,9 @@ export default function LegalPage({ doc }) {
               </ol>
             </aside>
 
-            <motion.div key={`${doc}-list`} className="legal__list" variants={list} initial="hidden" animate="show">
+            <div className="legal__list">
               {d.sections.map((s, i) => (
-                <motion.div key={s.title} variants={item} id={slug(s.title)}>
+                <div key={s.title} id={slug(s.title)}>
                   <GlassCard className="legal__item">
                     <span className="legal__n mono">{String(i + 1).padStart(2, "0")}</span>
                     <div>
@@ -74,10 +69,10 @@ export default function LegalPage({ doc }) {
                       )}
                     </div>
                   </GlassCard>
-                </motion.div>
+                </div>
               ))}
 
-              <motion.div variants={item}>
+              <div>
                 <GlassCard strong className="legal__contact">
                   <div>
                     <h3>Questions about this document?</h3>
@@ -88,10 +83,10 @@ export default function LegalPage({ doc }) {
                   </div>
                   <Button href={`mailto:${site.email}`} icon={RiMailLine}>Contact support</Button>
                 </GlassCard>
-              </motion.div>
+              </div>
 
-              <motion.p variants={item} className="notice"><RiInformationLine />Draft text for review. The final document must be approved by qualified legal counsel before launch.</motion.p>
-            </motion.div>
+              <p className="notice"><RiInformationLine />Draft text for review. The final document must be approved by qualified legal counsel before launch.</p>
+            </div>
           </div>
         </div>
       </section>

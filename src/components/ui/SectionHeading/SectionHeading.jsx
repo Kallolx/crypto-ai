@@ -1,4 +1,3 @@
-import Reveal from "@/components/ui/Reveal";
 import "./SectionHeading.css";
 
 /* Eyebrow + title + optional lead. align: "center" | "split" | "left" */
@@ -7,15 +6,15 @@ export default function SectionHeading({ eyebrow, title, lead, align = "center",
     <div className={`sh sh--${align}`}>
       <div className="sh__main">
         {eyebrow && (
-          <Reveal className="sh__eyebrow">
+          <div className="sh__eyebrow">
             <span className="sh__dot" />
             {eyebrow}
-          </Reveal>
+          </div>
         )}
-        <Reveal as="h2" delay={0.06}>{title}</Reveal>
-        {lead && align !== "split" && <Reveal as="p" className="lead" delay={0.12}>{lead}</Reveal>}
+        <h2>{title}</h2>
+        {lead && align !== "split" && <p className="lead">{lead}</p>}
       </div>
-      {align === "split" && lead && <Reveal as="p" className="sh__aside" delay={0.12}>{lead}</Reveal>}
+      {align === "split" && lead && <p className="sh__aside">{lead}</p>}
       {children}
     </div>
   );

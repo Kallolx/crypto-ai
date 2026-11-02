@@ -51,20 +51,11 @@
   color: var(--muted);
 }
 
-.assets__viewport {
-  overflow: hidden;
-  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-}
-
 .assets__track {
   display: flex;
-  gap: 44px;
-  width: max-content;
-  animation: assets-loop 40s linear infinite;
-}
-
-.assets__viewport:hover .assets__track {
-  animation-play-state: paused;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px 32px;
 }
 
 .assets__item {
@@ -84,10 +75,6 @@
 .assets__item:hover {
   filter: none;
   opacity: 1;
-}
-
-@keyframes assets-loop {
-  to { transform: translateX(calc(-50% - 22px)); }
 }
 
 @media (max-width: 820px) {

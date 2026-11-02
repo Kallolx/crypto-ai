@@ -1,5 +1,4 @@
 import { useMemo } from "react";
-import { motion } from "framer-motion";
 
 const W = 600;
 const H = 210;
@@ -43,7 +42,7 @@ export default function EngineCandles() {
   }, []);
 
   return (
-    <motion.svg className="engine__chart" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" aria-hidden="true" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }}>
+    <svg className="engine__chart" viewBox={`0 0 ${W} ${H}`} preserveAspectRatio="none" aria-hidden="true">
       {[0.25, 0.5, 0.75].map((t) => (
         <line key={t} x1="0" x2={W} y1={H * t} y2={H * t} stroke="rgba(140,175,255,.07)" strokeDasharray="3 6" vectorEffect="non-scaling-stroke" />
       ))}
@@ -53,41 +52,34 @@ export default function EngineCandles() {
         const up = c.c >= c.o;
         const color = up ? "#34d399" : "#fb7185";
         return (
-          <motion.g
-            key={i}
-            style={{ originX: `${x}px`, originY: `${(y(c.o) + y(c.c)) / 2}px`, transformBox: "fill-box" }}
-            variants={{ hidden: { opacity: 0, scaleY: 0 }, show: { opacity: 1, scaleY: 1, transition: { delay: i * 0.035, duration: 0.5, ease: [0.22, 1, 0.36, 1] } } }}
-          >
+          <g key={i}>
             <line x1={x} x2={x} y1={y(c.h)} y2={y(c.l)} stroke={color} strokeWidth="1.5" vectorEffect="non-scaling-stroke" />
             <rect x={x - step * 0.3} y={y(Math.max(c.o, c.c))} width={step * 0.6} height={Math.max(2, Math.abs(y(c.o) - y(c.c)))} rx="1.5" fill={color} />
-          </motion.g>
+          </g>
         );
       })}
 
-      <motion.path
+      <path
         d={ma.map(([x, py], i) => `${i ? "L" : "M"}${x.toFixed(1)} ${py.toFixed(1)}`).join(" ")}
         fill="none"
         stroke="#a5b4fc"
         strokeWidth="2"
         vectorEffect="non-scaling-stroke"
-        variants={{ hidden: { pathLength: 0 }, show: { pathLength: 1, transition: { duration: 2, delay: 0.6, ease: [0.22, 1, 0.36, 1] } } }}
       />
 
-      {signals.map(({ i, side }, k) => {
+      {signals.map(({ i, side }) => {
         const c = candles[i];
         const x = i * step + step / 2;
         const buy = side === "buy";
         const py = buy ? y(c.l) + 12 : y(c.h) - 12;
         return (
-          <motion.path
+          <path
             key={i}
             d={buy ? `M${x} ${py - 6} l6 10 h-12 z` : `M${x} ${py + 6} l6 -10 h-12 z`}
             fill={buy ? "#34d399" : "#fb7185"}
-            style={{ transformBox: "fill-box", transformOrigin: "center" }}
-            variants={{ hidden: { opacity: 0, scale: 0 }, show: { opacity: 1, scale: 1, transition: { delay: 1.2 + k * 0.25, type: "spring", stiffness: 300, damping: 16 } } }}
           />
         );
       })}
-    </motion.svg>
+    </svg>
   );
 }

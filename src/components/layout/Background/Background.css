@@ -1,47 +1,15 @@
+/* Glows are plain radial gradients: no blur filter, no animation */
 .bg {
   position: fixed;
   inset: 0;
   z-index: -1;
   overflow: hidden;
-  background: linear-gradient(180deg, var(--bg-1), var(--bg-0) 70%);
+  background:
+    radial-gradient(60vw 60vw at 85% -10%, rgba(29, 78, 216, 0.45), transparent 60%),
+    radial-gradient(50vw 50vw at 0% 55%, rgba(34, 211, 238, 0.1), transparent 60%),
+    radial-gradient(55vw 40vw at 55% 110%, rgba(99, 102, 241, 0.18), transparent 60%),
+    linear-gradient(180deg, var(--bg-1), var(--bg-0) 70%);
   pointer-events: none;
-}
-
-.bg__aurora {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(90px);
-  opacity: 0.55;
-  will-change: transform;
-}
-
-.bg__aurora--a {
-  width: 60vw;
-  height: 60vw;
-  top: -25vw;
-  right: -15vw;
-  background: radial-gradient(circle, #1d4ed8, transparent 65%);
-  animation: aurora-a 22s ease-in-out infinite alternate;
-}
-
-.bg__aurora--b {
-  width: 50vw;
-  height: 50vw;
-  top: 30vh;
-  left: -25vw;
-  background: radial-gradient(circle, rgba(34, 211, 238, 0.55), transparent 65%);
-  opacity: 0.25;
-  animation: aurora-b 26s ease-in-out infinite alternate;
-}
-
-.bg__aurora--c {
-  width: 55vw;
-  height: 40vw;
-  bottom: -25vw;
-  left: 25vw;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.7), transparent 65%);
-  opacity: 0.3;
-  animation: aurora-a 30s ease-in-out infinite alternate-reverse;
 }
 
 .bg__grid {
@@ -52,19 +20,4 @@
     linear-gradient(90deg, rgba(140, 175, 255, 0.04) 1px, transparent 1px);
   background-size: 72px 72px;
   mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 30%, transparent 80%);
-}
-
-.bg__noise {
-  position: absolute;
-  inset: 0;
-  opacity: 0.05;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-@keyframes aurora-a {
-  to { transform: translate(-8vw, 10vh) scale(1.15); }
-}
-
-@keyframes aurora-b {
-  to { transform: translate(10vw, -8vh) scale(1.1); }
 }

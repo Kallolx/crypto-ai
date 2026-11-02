@@ -1,9 +1,7 @@
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { RiAddLine, RiCustomerService2Line } from "react-icons/ri";
 import SectionHeading from "@/components/ui/SectionHeading/SectionHeading";
 import Button from "@/components/ui/Button/Button";
-import Reveal from "@/components/ui/Reveal";
 import { faqs } from "@/data/content";
 import { site } from "@/config/site";
 import "./FAQ.css";
@@ -21,40 +19,32 @@ export default function FAQ() {
             title={<>Questions, <span className="text-gradient">answered</span></>}
             lead="Can't find what you need? Our support desk replies within one business day."
           >
-            <Reveal delay={0.2} className="faq__cta">
+            <div className="faq__cta">
               <Button href={`mailto:${site.email}`} variant="glass" icon={RiCustomerService2Line}>Contact support</Button>
-            </Reveal>
+            </div>
           </SectionHeading>
         </div>
 
-        <Reveal stagger={0.06} className="faq__list">
+        <div className="faq__list">
           {faqs.map((f, i) => {
             const isOpen = open === i;
             return (
-              <Reveal.Item key={f.q} className={`faq__item ${isOpen ? "is-open" : ""}`}>
+              <div key={f.q} className={`faq__item ${isOpen ? "is-open" : ""}`}>
                 <button className="faq__q" aria-expanded={isOpen} onClick={() => setOpen(isOpen ? -1 : i)}>
                   {f.q}
-                  <motion.span className="faq__plus" animate={{ rotate: isOpen ? 45 : 0 }} transition={{ type: "spring", stiffness: 300, damping: 20 }}>
+                  <span className="faq__plus" style={{ rotate: isOpen ? "45deg" : "0deg" }}>
                     <RiAddLine />
-                  </motion.span>
+                  </span>
                 </button>
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      className="faq__a"
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: "auto", opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                      <p>{f.a}</p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </Reveal.Item>
+                {isOpen && (
+                  <div className="faq__a">
+                    <p>{f.a}</p>
+                  </div>
+                )}
+              </div>
             );
           })}
-        </Reveal>
+        </div>
       </div>
     </section>
   );
