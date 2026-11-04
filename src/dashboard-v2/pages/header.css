@@ -1,0 +1,492 @@
+/* ================= Avatar (always a circle) ================= */
+.dx-avatar {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  border-radius: 50%;
+}
+
+.dx-avatar > img,
+.dx-avatar > svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.dx-avatar.has-ring {
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.9);
+}
+
+.dx-avatar__dot {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 11px;
+  height: 11px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #34d399;
+}
+
+/* ================= Header actions ================= */
+.dh {
+  position: relative;
+}
+
+.dh__cluster {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dh__bell {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 40px;
+  height: 40px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  color: #fff;
+  font-size: 1.15rem;
+  transition: background 0.2s;
+}
+
+.dh__bell:hover,
+.dh__bell[aria-expanded="true"] { background: rgba(255, 255, 255, 0.24); }
+
+.dh__bell b {
+  position: absolute;
+  top: -3px;
+  right: -3px;
+  display: grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #22d3ee, #3b82f6);
+  font-size: 0.62rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.dh__user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 999px;
+  color: #fff;
+}
+
+.dh__name {
+  display: none;
+  text-align: left;
+  line-height: 1.15;
+}
+
+.dh__name b { display: block; font-size: 0.84rem; }
+.dh__name small { font-size: 0.68rem; color: #a3b5dc; }
+
+.dh__chev {
+  display: none;
+  margin-right: 6px;
+  font-size: 1.1rem;
+  color: #c9d6f5;
+  transition: transform 0.25s;
+}
+
+.dh__user[aria-expanded="true"] .dh__chev { transform: rotate(180deg); }
+
+@media (min-width: 861px) {
+  .dh__name,
+  .dh__chev { display: block; }
+}
+
+/* ================= Panels ================= */
+.dh__panel {
+  position: fixed;
+  top: 68px;
+  right: 12px;
+  left: 12px;
+  z-index: 60;
+  padding: 10px;
+  color: #fff;
+  animation: dx-pop 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (min-width: 861px) {
+  .dh__panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    left: auto;
+    width: 340px;
+  }
+
+  .dh__panel--menu { width: 270px; }
+}
+
+.dh__phead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px 10px;
+}
+
+.dh__phead h3 { font-size: 1rem; color: #fff; }
+
+.dh__phead button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.76rem;
+  font-weight: 600;
+  color: #22d3ee;
+}
+
+.dh__phead button[disabled] { opacity: 0.4; }
+
+.dh__panel ul {
+  display: grid;
+  gap: 2px;
+  max-height: 340px;
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.dh__panel ul::-webkit-scrollbar { display: none; }
+
+.dh__panel li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 14px;
+}
+
+.dh__panel li.is-new { background: rgba(59, 130, 246, 0.14); }
+
+.dh__panel li > span:nth-child(2) { flex: 1; min-width: 0; }
+.dh__panel li b { display: block; font-size: 0.88rem; color: #fff; }
+.dh__panel li small { font-size: 0.72rem; color: #a3b5dc; }
+
+.dh__panel li > i {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #22d3ee;
+}
+
+.dh__me {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 8px 12px;
+  border-bottom: 1px solid rgba(190, 215, 255, 0.14);
+}
+
+.dh__me b { display: block; font-size: 0.95rem; color: #fff; }
+.dh__me small { font-size: 0.76rem; color: #a3b5dc; }
+
+.dh__panel nav {
+  display: grid;
+  gap: 2px;
+  padding: 8px 0;
+}
+
+.dh__panel nav a,
+.dh__out {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 10px;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #dbe6ff;
+  transition: background 0.18s, color 0.18s;
+}
+
+.dh__panel nav a svg,
+.dh__out svg { font-size: 1.15rem; color: #22d3ee; }
+
+.dh__panel nav a:hover { background: rgba(255, 255, 255, 0.07); color: #fff; }
+
+.dh__out {
+  border-top: 1px solid rgba(190, 215, 255, 0.14);
+  border-radius: 0 0 12px 12px;
+  margin-top: 2px;
+  padding-top: 12px;
+  color: #fda4b0;
+}
+
+.dh__out svg { color: #fda4b0; }
+.dh__out:hover { color: #fff; }
+
+/* Profile avatar: circle, no square tile behind it */
+.dp-avatar > span,
+.dp-avatar > img { display: none; }
+.dp-avatar { width: 80px; height: 80px; }
+.dp-avatar > .dx-avatar { display: inline-block; }
+.dp-avatar button { right: -2px; bottom: -2px; }
+
+.dx__brandlink {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+}
+
+/* Panels hug the right edge instead of spanning the screen on phones */
+@media (max-width: 860px) {
+  .dh__panel {
+    right: 12px;
+    left: auto;
+    width: min(340px, calc(100vw - 24px));
+  }
+
+  .dh__panel--menu {
+    width: min(250px, calc(100vw - 24px));
+  }
+}
+
+.dh__time {
+  flex: none;
+  width: 54px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #8ea5df;
+}
+
+/* Time sits on the right of each notification, no unread dot */
+.dh__panel li > .dh__time {
+  width: auto;
+  margin-left: auto;
+  padding-left: 10px;
+  text-align: right;
+  white-space: nowrap;
+}
+.dh__panel li > i { display: none; }
+
+/* ================= Bottom bar: gliding glass pill ================= */
+.dx__tabs { position: fixed; }
+
+.dx__glide {
+  position: absolute;
+  top: 5px;
+  bottom: 5px;
+  left: 0;
+  z-index: 0;
+  border-radius: 19px;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.08));
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), width 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s;
+  will-change: transform, width;
+  pointer-events: none;
+}
+
+/* lit corners, same recipe as the tabs and buttons */
+.dx__glide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background:
+    radial-gradient(34px 24px at 0% 0%, rgba(255, 255, 255, 0.95), transparent 70%),
+    radial-gradient(34px 24px at 100% 100%, rgba(125, 211, 252, 0.95), transparent 70%),
+    linear-gradient(rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+@media (max-width: 860px) {
+  .dx__tabs a { position: relative; z-index: 1; }
+  /* The pill replaces the old per-item active background */
+  .dx__tabs a.active:not(.is-center) { background: none; }
+  .dx__tabs a.is-active:not(.is-center) { color: #fff; }
+  .dx__tabs a.is-active:not(.is-center) svg { color: #22d3ee; }
+}
+
+@media (min-width: 861px) {
+  .dx__glide { display: none; }
+}
+
+/* Bottom bar: no glows, glass only */
+@media (max-width: 860px) {
+  .dx .dx__tabs {
+    background: linear-gradient(145deg, rgba(8, 20, 70, 0.62), rgba(22, 56, 150, 0.5));
+    backdrop-filter: blur(24px) saturate(170%);
+    -webkit-backdrop-filter: blur(24px) saturate(170%);
+    box-shadow: 0 12px 28px -16px rgba(5, 12, 38, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  }
+
+  .dx .dx__tabs .is-center em {
+    box-shadow: none;
+    border-color: rgba(255, 255, 255, 0.35);
+    background: linear-gradient(135deg, #3b7bff, #1d4ed8);
+  }
+
+  .dx .dx__tabs a svg,
+  .dx .dx__tabs a.is-active svg {
+    filter: none;
+  }
+}
+
+/* Bottom bar: solid gradient colour with a glass finish (lit top edge, blur), not see-through */
+@media (max-width: 860px) {
+  .dx .dx__tabs {
+    background:
+      radial-gradient(120px 60px at 100% 0%, rgba(34, 211, 238, 0.28), transparent 70%),
+      radial-gradient(140px 70px at 0% 100%, rgba(59, 130, 246, 0.35), transparent 70%),
+      linear-gradient(135deg, rgba(6, 14, 44, 0.96), rgba(13, 34, 116, 0.94) 55%, rgba(29, 78, 216, 0.92));
+    border: 1px solid rgba(190, 215, 255, 0.3);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 12px 28px -16px rgba(5, 12, 38, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  }
+
+  .dx .dx__tabs .is-center em {
+    border-color: #0d2274;
+  }
+}
+
+/* Bottom bar: same colour on both sides (vertical gradient only, no left-to-right shift) */
+@media (max-width: 860px) {
+  .dx .dx__tabs {
+    background: linear-gradient(180deg, rgba(16, 40, 128, 0.96), rgba(8, 20, 70, 0.96));
+  }
+}
+
+/* ================= Sticky top bar =================
+   The bar is its own sticky row. The gradient header sits behind it (pulled up), so at the top of
+   the page they look like one piece; after scrolling the bar shows its own gradient. */
+.dx .dx__barwrap {
+  --bar-h: 66px;
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  display: flex;
+  align-items: center;
+  height: var(--bar-h);
+  padding: 0 12px;
+  isolation: isolate;
+}
+
+.dx .dx__barwrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 0 0 22px 22px;
+  background: linear-gradient(135deg, #050c26, #0b1f6b 60%, #1d4ed8);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.dx .dx__barwrap.is-stuck::before {
+  opacity: 1;
+}
+
+.dx .dx__barwrap .dx__bar {
+  flex: 1;
+}
+
+.dx .dx__head {
+  position: relative;
+  z-index: 1;
+  margin-top: -66px;
+  padding-top: calc(66px + 6px);
+}
+
+@media (min-width: 861px) {
+  .dx .dx__barwrap {
+    padding: 0 clamp(16px, 3vw, 36px);
+  }
+}
+
+.dx .dx__barwrap {
+  color: #fff;
+}
+
+/* Cards overlap the bottom of the gradient header, so the content layer must sit above it */
+.dx .dx__head {
+  z-index: 0;
+}
+
+.dx .dx__body {
+  position: relative;
+  z-index: 2;
+}
+
+/* Smaller gap under the top bar, quick actions on the right of the greeting */
+.dx .dx__head {
+  padding-top: 66px;
+}
+
+.dx .dx__hello {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 0;
+}
+
+.dx__quick {
+  display: flex;
+  gap: 8px;
+}
+
+.dx__quick a {
+  position: relative;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 42px;
+  height: 42px;
+  padding: 0 13px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #fff;
+  overflow: hidden;
+  transition: background 0.2s;
+}
+
+.dx__quick a:hover { background: rgba(255, 255, 255, 0.2); }
+.dx__quick a svg { font-size: 1.15rem; color: #22d3ee; }
+
+.dx__quick a::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background:
+    radial-gradient(34px 24px at 0% 0%, rgba(255, 255, 255, 0.95), transparent 70%),
+    radial-gradient(34px 24px at 100% 100%, rgba(125, 211, 252, 0.9), transparent 70%),
+    linear-gradient(rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Phones: icon-only buttons so long page titles still fit */
+@media (max-width: 560px) {
+  .dx__quick a { width: 42px; padding: 0; }
+  .dx__quick a span { display: none; }
+}

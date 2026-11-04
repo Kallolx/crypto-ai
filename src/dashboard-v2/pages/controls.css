@@ -1,0 +1,377 @@
+/* ================= Shared gradient button recipe =================
+   Same look as the landing page buttons: blue gradient, lit corners, light sweep. */
+.dx .dx-btn,
+.dx .dx-copy,
+.dx .dx-tabs__glide {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(135deg, #3b7bff 0%, #1d4ed8 55%, #1e3a8a 100%);
+  color: #fff;
+}
+
+.dx .dx-btn::before,
+.dx .dx-copy::before,
+.dx .dx-tabs__glide::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 1px;
+  border-radius: inherit;
+  background:
+    radial-gradient(44px 30px at 0% 0%, rgba(255, 255, 255, 0.95), transparent 70%),
+    radial-gradient(44px 30px at 100% 100%, rgba(125, 211, 252, 0.95), transparent 70%),
+    linear-gradient(rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.05));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* light sweep on hover */
+.dx .dx-btn::after,
+.dx .dx-copy::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  z-index: -1;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.35) 48%, transparent 66%);
+  transform: translateX(-110%);
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.dx .dx-btn:hover::after,
+.dx .dx-copy:hover::after {
+  transform: translateX(110%);
+}
+
+.dx .dx-copy {
+  border-radius: 11px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+
+/* ================= Tabs with a gliding glass pill ================= */
+.dx-tabs {
+  position: relative;
+  display: inline-flex;
+  max-width: 100%;
+  padding: 4px;
+  border: 1px solid rgba(29, 78, 216, 0.12);
+  border-radius: 16px;
+  background: rgba(29, 78, 216, 0.06);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.dx-tabs--scroll {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.dx-tabs--scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.dx-tabs__glide {
+  position: absolute;
+  top: 4px;
+  bottom: 4px;
+  left: 0;
+  z-index: 0;
+  border-radius: 12px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), width 0.5s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s;
+  will-change: transform, width;
+}
+
+.dx-tabs button {
+  position: relative;
+  z-index: 1;
+  flex: none;
+  padding: 9px 16px;
+  border-radius: 12px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--dx-sub);
+  transition: color 0.3s;
+}
+
+.dx-tabs button[aria-selected="true"] {
+  color: #fff;
+}
+
+/* ================= Custom dropdown ================= */
+.dx-sel {
+  position: relative;
+  display: grid;
+  gap: 6px;
+}
+
+.dx-sel > small {
+  font-size: 0.74rem;
+  color: var(--dx-sub);
+}
+
+.dx-sel__btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  height: 50px;
+  padding: 0 14px;
+  border: 1px solid var(--dx-line);
+  border-radius: 14px;
+  background: var(--dx-soft);
+  font-weight: 600;
+  color: var(--dx-ink);
+  text-align: left;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.dx-sel__btn:hover {
+  border-color: #c7d3ee;
+}
+
+.dx-sel.is-open .dx-sel__btn {
+  border-color: var(--dx-blue);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(29, 78, 216, 0.1);
+}
+
+.dx-sel__val {
+  flex: 1;
+}
+
+.dx-sel__ico {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, rgba(29, 78, 216, 0.14), rgba(34, 211, 238, 0.14));
+  color: var(--dx-blue);
+  font-size: 1rem;
+}
+
+.dx-sel__chev {
+  font-size: 1.3rem;
+  color: var(--dx-sub);
+  transition: transform 0.3s;
+}
+
+.dx-sel.is-open .dx-sel__chev {
+  transform: rotate(180deg);
+}
+
+.dx-sel__menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  left: 0;
+  z-index: 30;
+  display: grid;
+  gap: 2px;
+  padding: 6px;
+  border: 1px solid rgba(29, 78, 216, 0.14);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  box-shadow: 0 20px 40px -18px rgba(11, 42, 138, 0.45);
+  animation: dx-pop 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes dx-pop {
+  from { opacity: 0; transform: translateY(-6px) scale(0.98); }
+}
+
+.dx-sel__menu button {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  border-radius: 11px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-align: left;
+  color: var(--dx-ink);
+  transition: background 0.15s;
+}
+
+.dx-sel__menu button > span:not(.dx-sel__ico) {
+  flex: 1;
+}
+
+.dx-sel__menu small {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--dx-sub);
+}
+
+.dx-sel__menu button:hover {
+  background: var(--dx-soft);
+}
+
+.dx-sel__menu button[aria-selected="true"] {
+  background: rgba(29, 78, 216, 0.08);
+  color: var(--dx-blue);
+}
+
+/* ================= Wallets: one compact main card ================= */
+.dx-wm {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 22px 28px;
+  padding: 22px;
+}
+
+.dx-wm__top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dx-wm__top small {
+  display: block;
+  font-size: 0.76rem;
+}
+
+.dx-wm__top strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.3rem);
+  letter-spacing: -0.03em;
+}
+
+.dx-wm__top .dx-chip {
+  margin-left: auto;
+}
+
+.dx-wm__left {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.dx-wm__left .dx-wal__spark {
+  height: 70px;
+}
+
+.dx-wm__strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.dx-wm__strip div {
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.dx-wm__strip small {
+  display: block;
+  font-size: 0.7rem;
+}
+
+.dx-wm__strip b {
+  font-size: 0.95rem;
+}
+
+.dx-wm__list {
+  display: grid;
+  align-content: start;
+}
+
+.dx-wm__list h3 {
+  margin-bottom: 4px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: #a3b5dc;
+}
+
+.dx-wrow {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(190, 215, 255, 0.12);
+}
+
+.dx-wrow:last-child {
+  border-bottom: 0;
+}
+
+.dx-wrow .dx-tile {
+  width: 38px;
+  height: 38px;
+  font-size: 1.1rem;
+}
+
+.dx-wrow b {
+  display: block;
+  font-size: 0.92rem;
+  color: #fff;
+}
+
+.dx-wrow small {
+  font-size: 0.72rem;
+}
+
+.dx-wrow__bar {
+  display: block;
+  height: 5px;
+  margin-top: 6px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+}
+
+.dx-wrow__bar i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #3b7bff, #22d3ee);
+}
+
+.dx-wrow > span:last-child {
+  text-align: right;
+  font-weight: 700;
+  color: #fff;
+}
+
+@media (max-width: 860px) {
+  .dx-wm {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 18px;
+  }
+}
+
+/* Tabs that fill the row (equal widths) and never push their card wider */
+.dx-grid > *,
+.dx-stack > * {
+  min-width: 0;
+}
+
+.dx-tabs--fill {
+  display: flex;
+  width: 100%;
+}
+
+.dx-tabs--fill button {
+  flex: 1;
+  padding-inline: 8px;
+}
+
+/* Beats the shared button recipe above: the glide pill must float over the buttons, not sit in the flex row */
+.dx .dx-tabs .dx-tabs__glide {
+  position: absolute;
+  flex: none;
+}

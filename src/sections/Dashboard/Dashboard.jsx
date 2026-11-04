@@ -1,28 +1,30 @@
-import { useState } from "react";
-import {
-  RiDashboardLine, RiStackLine, RiDownload2Line, RiUpload2Line, RiTeamLine, RiExchangeLine, RiFileChartLine,
-  RiCoinsLine, RiAddLine, RiArrowRightUpLine, RiNotification3Line, RiArrowUpSFill, RiSearchLine,
-} from "react-icons/ri";
-import Button from "@/components/ui/Button/Button";
 import GlassCard from "@/components/ui/GlassCard/GlassCard";
 import SectionHeading from "@/components/ui/SectionHeading/SectionHeading";
-import Amount from "@/components/ui/Amount";
-import Logo from "@/components/ui/Logo/Logo";
 import CoinIcon from "@/components/ui/CoinIcon/CoinIcon";
-import PortfolioChart from "./charts/PortfolioChart";
 import AllocationDonut from "./charts/AllocationDonut";
-import Sparkline from "./charts/Sparkline";
-import InsightPanels from "./charts/InsightPanels";
-import { wallets, transactions, dashNav, sparks } from "@/data/dashboard";
+import { transactions } from "@/data/dashboard";
 import "./Dashboard.css";
-
-const navIcons = [RiDashboardLine, RiStackLine, RiDownload2Line, RiUpload2Line, RiTeamLine, RiExchangeLine, RiFileChartLine, RiCoinsLine];
 
 const statusClass = { Credited: "ok", Completed: "ok", Confirmed: "ok", Processing: "wait" };
 
-export default function Dashboard() {
-  const [active, setActive] = useState("Dashboard");
+const activityRows = transactions.map((t) => (
+  <div className={`tx__row ${t.isNew ? "tx__row--new" : ""}`} key={t.type + t.date}>
+    <span className="tx__type">
+      <CoinIcon symbol={t.asset} size={28} />
+      <span>
+        {t.type}
+        <small>{t.date}</small>
+      </span>
+    </span>
+    <span className="tx__meta">
+      {t.isNew && <i className="tx__new">New</i>}
+      <span className="tx__amount mono">*** {t.asset}</span>
+      <span className={`tx__status tx__status--${statusClass[t.status]}`}>{t.status}</span>
+    </span>
+  </div>
+));
 
+export default function Dashboard() {
   return (
     <section className="section" id="dashboard">
       <div className="container">
@@ -30,105 +32,34 @@ export default function Dashboard() {
           align="split"
           eyebrow="Your control room"
           title={<>Every wallet, <span className="text-gradient">one view</span></>}
-          lead="Deposits, profits, affiliate bonuses, withdrawals and token staking, tracked side by side in real time."
+          lead="See how your portfolio is allocated and review your latest account activity in one place."
         />
 
-        <div>
-          <GlassCard strong className="dash">
-            <aside className="dash__side">
-              <div className="dash__brand"><Logo size={28} /></div>
-              <nav className="dash__nav">
-                {dashNav.map((label, i) => {
-                  const Icon = navIcons[i];
-                  return (
-                    <button key={label} className={`dash__nav-item ${active === label ? "is-active" : ""}`} onClick={() => setActive(label)}>
-                      <Icon />
-                      <span>{label}</span>
-                    </button>
-                  );
-                })}
-              </nav>
-            </aside>
-
-            <div className="dash__main">
-              <div className="dash__top">
-                <div>
-                  <span className="dash__crumb">{active}</span>
-                  <h3>Welcome back, Alex</h3>
+        <GlassCard strong className="dash">
+          <div className="dash__main">
+            <div className="dash__panels">
+              <div className="panel">
+                <div className="panel__head">
+                  <h4>Allocation</h4>
                 </div>
-                <div className="dash__tools">
-                  <span className="dash__actions">
-                    <Button to="/signup" size="sm" icon={RiAddLine}>Deposit</Button>
-                    <Button to="/signup" size="sm" variant="glass" icon={RiArrowRightUpLine}>Withdraw</Button>
-                  </span>
-                  <span className="dash__search"><RiSearchLine />Search</span>
-                  <span className="dash__bell"><RiNotification3Line /><i /></span>
-                  <span className="dash__avatar">AM</span>
-                </div>
+                <AllocationDonut />
               </div>
-
-              <div className="dash__wallets">
-                {wallets.map((w, i) => (
-                  <div key={w.label} className="wallet">
-                    <span className="wallet__label">{w.label}</span>
-                    <Amount
-                      className="wallet__value"
-                      to={w.value}
-                      prefix={w.unit ? "" : "$"}
-                      suffix={w.unit ? ` ${w.unit}` : ""}
-                      decimals={w.unit ? 0 : 2}
-                    />
-                    {w.change > 0 ? (
-                      <span className="wallet__change positive"><RiArrowUpSFill />{w.change}% this month</span>
-                    ) : (
-                      <span className="wallet__change">Available to invest</span>
-                    )}
-                    <Sparkline data={sparks[w.label]} color={i === 2 ? "#a5b4fc" : "#22d3ee"} />
-                  </div>
-                ))}
-              </div>
-
-              <div className="dash__panels">
-                <div className="panel panel--chart">
-                  <PortfolioChart />
-                </div>
-                <div className="panel">
-                  <div className="panel__head">
-                    <h4>Allocation</h4>
-                  </div>
-                  <AllocationDonut />
-                </div>
-              </div>
-
-              <InsightPanels />
 
               <div className="panel">
                 <div className="panel__head">
                   <h4>Recent activity</h4>
-                  <span className="panel__chip">Last 5</span>
+                <span className="panel__chip">Live feed</span>
                 </div>
-                <div className="tx">
-                  {transactions.map((t) => (
-                    <div className="tx__row" key={t.type + t.date}>
-                      <span className="tx__type">
-                        <CoinIcon symbol={t.asset} size={28} />
-                        <span>
-                          {t.type}
-                          <small>{t.date}</small>
-                        </span>
-                      </span>
-                      <span className={`tx__amount mono ${t.amount > 0 ? "positive" : ""}`}>
-                        {t.amount > 0 ? "+" : "−"}
-                        {Math.abs(t.amount).toLocaleString("en-US", { minimumFractionDigits: t.asset === "USDT" ? 2 : 0 })} {t.asset}
-                      </span>
-                      <span className={`tx__status tx__status--${statusClass[t.status]}`}>{t.status}</span>
-                    </div>
-                  ))}
+                <div className="tx__viewport" aria-label="Recent activity">
+                  <div className="tx__track">
+                  <div className="tx">{activityRows}</div>
+                  <div className="tx" aria-hidden="true">{activityRows}</div>
+                  </div>
                 </div>
               </div>
             </div>
-          </GlassCard>
-        </div>
+          </div>
+        </GlassCard>
         <p className="dash__note">Design preview with sample data.</p>
       </div>
     </section>

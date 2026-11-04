@@ -118,7 +118,7 @@ export default function Products() {
             <GlassCard className="bento__card">
               <Head icon={RiTimerFlashLine} tag="Withdrawals" title="Fast USDT payouts" text="From $10, straight to your wallet." />
               <div className="payout">
-                <span className="payout__num text-gradient">96h</span>
+                <span className="payout__num text-gradient">24h</span>
                 <span className="payout__track"><span style={{ width: "72%" }} /></span>
               </div>
             </GlassCard>

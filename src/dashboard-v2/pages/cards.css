@@ -1,0 +1,412 @@
+/* ================= One card / icon / button language =================
+   Glass surfaces with lit corners (same idea as the landing page), one icon colour everywhere. */
+
+/* Lit-corner hairline border on every card */
+.dx .dx-card {
+  position: relative;
+  isolation: isolate;
+}
+
+.dx .dx-dark,
+.dx .dx-balance {
+  border: 0;
+}
+
+.dx .dx-dark::before,
+.dx .dx-balance::before,
+.dx-shine::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  padding: 1px;
+  border-radius: inherit;
+  background:
+    radial-gradient(120px 90px at 0% 0%, rgba(29, 78, 216, 0.75), transparent 70%),
+    radial-gradient(120px 90px at 100% 100%, rgba(34, 211, 238, 0.8), transparent 70%),
+    linear-gradient(rgba(29, 78, 216, 0.1), rgba(29, 78, 216, 0.1));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Dark cards: light only at the two top corners, kept tight so it never runs down the sides */
+.dx .dx-dark::before,
+.dx .dx-balance::before {
+  background:
+    radial-gradient(56px 44px at 0% 0%, rgba(255, 255, 255, 0.95), transparent 72%),
+    radial-gradient(56px 44px at 100% 0%, rgba(34, 211, 238, 0.95), transparent 72%);
+}
+
+/* No full-width top line and no all-round hairline on dark cards: only the two corner lights remain */
+.dx .dx-dark,
+.dx .dx-balance {
+  box-shadow: 0 22px 44px -28px rgba(5, 12, 38, 0.7);
+}
+
+/* Dark glass card (same recipe as the balance hero card) */
+.dx .dx-dark {
+  border-radius: 24px;
+  background:
+    radial-gradient(260px 160px at 100% 0%, rgba(34, 211, 238, 0.2), transparent 70%),
+    linear-gradient(150deg, #0d2274, #071233 78%);
+  color: #fff;
+  backdrop-filter: none;
+}
+
+.dx .dx-dark small,
+.dx .dx-dark dt {
+  color: #a3b5dc;
+}
+
+.dx .dx-dark .dx-mask {
+  color: #c9d6f5;
+}
+
+/* Single icon treatment: same tile, same colour, on every page */
+.dx .dx-tile,
+.dx .dx-tile--blue,
+.dx .dx-tile--green,
+.dx .dx-tile--violet,
+.dx .dx-tile--gold {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(29, 78, 216, 0.14);
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(29, 78, 216, 0.14), rgba(34, 211, 238, 0.14));
+  color: #1d4ed8;
+  font-size: 1.25rem;
+}
+
+.dx .dx-dark .dx-tile {
+  border-color: rgba(190, 215, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+  color: #22d3ee;
+}
+
+/* Buttons: landing look, shine corners + light sweep */
+.dx .dx-actions a,
+.dx .dx-actions button,
+.dx .dx-btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.dx .dx-actions a::before,
+.dx .dx-actions button::before,
+.dx .dx-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  padding: 1px;
+  border-radius: inherit;
+  background:
+    radial-gradient(40px 28px at 0% 0%, #fff, transparent 70%),
+    radial-gradient(40px 28px at 100% 100%, rgba(125, 211, 252, 0.95), transparent 70%),
+    linear-gradient(rgba(255, 255, 255, 0.16), rgba(255, 255, 255, 0.06));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.dx .dx-actions a,
+.dx .dx-actions button {
+  border: 0;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ================= Wallet cards ================= */
+.dx-wallets {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.dx-wal {
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+}
+
+.dx-wal__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dx-wal__head > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.dx-wal__head h3 {
+  font-size: 1rem;
+  color: #fff;
+}
+
+.dx-wal__head small {
+  font-size: 0.74rem;
+}
+
+.dx-chip {
+  padding: 4px 10px;
+  border: 1px solid rgba(190, 215, 255, 0.25);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 0.68rem;
+  font-weight: 600;
+  color: #dbe6ff;
+}
+
+.dx-wal__bal small {
+  display: block;
+  font-size: 0.74rem;
+}
+
+.dx-wal__bal strong {
+  display: block;
+  margin: 2px 0;
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  letter-spacing: -0.03em;
+}
+
+.dx-wal__bal span {
+  font-size: 0.8rem;
+  color: #a3b5dc;
+}
+
+.dx-wal__spark {
+  width: 100%;
+  height: 54px;
+}
+
+.dx-wal__info {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+}
+
+.dx-wal__info div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 0.8rem;
+}
+
+.dx-wal__info dd {
+  margin: 0;
+  font-weight: 600;
+  color: #fff;
+}
+
+.dx-wal__acts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.dx-wal__acts a,
+.dx-wal__acts button {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  justify-items: center;
+  gap: 3px;
+  padding: 10px 4px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.08);
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: #fff;
+}
+
+.dx-wal__acts svg {
+  font-size: 1.15rem;
+  color: #22d3ee;
+}
+
+.dx-wal__acts a::before,
+.dx-wal__acts button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: inherit;
+  background:
+    radial-gradient(36px 26px at 0% 0%, rgba(255, 255, 255, 0.9), transparent 70%),
+    radial-gradient(36px 26px at 100% 100%, rgba(125, 211, 252, 0.9), transparent 70%),
+    linear-gradient(rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.06));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.dx-wal__strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.dx-wal__strip div {
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+.dx-wal__strip small {
+  display: block;
+  font-size: 0.7rem;
+}
+
+.dx-wal__strip b {
+  font-size: 1rem;
+}
+
+/* ================= Plan cards ================= */
+.dx-pc {
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.dx-pc__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dx-pc__head > div {
+  flex: 1;
+  min-width: 0;
+}
+
+.dx-pc__head h3 {
+  font-size: 1.05rem;
+}
+
+.dx-pc__head small {
+  font-size: 0.74rem;
+  color: var(--dx-sub);
+}
+
+.dx-pc__body {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 16px;
+}
+
+.dx-ring {
+  position: relative;
+  width: 88px;
+  height: 88px;
+}
+
+.dx-ring svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.dx-ring b {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+}
+
+.dx-pc__stats {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+}
+
+.dx-pc__stats div {
+  display: flex;
+  justify-content: space-between;
+  padding: 9px 12px;
+  border-radius: 12px;
+  background: var(--dx-soft);
+  font-size: 0.82rem;
+}
+
+.dx-pc__stats dt {
+  color: var(--dx-sub);
+}
+
+.dx-pc__stats dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.dx-pc__foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid var(--dx-line);
+  font-size: 0.78rem;
+  color: var(--dx-sub);
+}
+
+.dx-pc__foot button {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--dx-blue);
+}
+
+.dx-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.dx-features span {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--dx-soft);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--dx-sub);
+}
+
+@media (max-width: 860px) {
+  .dx-wallets {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.dx .dx-badge--blue {
+  background: #dbe6ff;
+  color: var(--dx-blue);
+}
+
+.dx-pc__foot > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dx-pc__foot > span svg {
+  color: var(--dx-blue);
+}

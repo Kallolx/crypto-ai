@@ -20,7 +20,7 @@ export default function Pricing() {
             Rates are target ranges, not guaranteed returns. Trading involves risk and you may lose part or all of your deposit.
             Principal withdrawals carry a 15% fee and earnings are capped (4X passive).
           </p>
-          <Button to="/pricing" variant="glass" icon={RiArrowRightUpLine}>Compare plans &amp; calculator</Button>
+          <Button to="/pricing" variant="glass" icon={RiArrowRightUpLine}>Compare plans</Button>
         </div>
       </div>
     </section>

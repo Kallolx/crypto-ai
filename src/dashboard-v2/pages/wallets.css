@@ -1,0 +1,128 @@
+/* Wallets: dark summary card on top, light list below */
+.dx-wm {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+  align-items: center;
+  gap: 20px 28px;
+  padding: 22px;
+}
+
+.dx-wm__right {
+  display: grid;
+  gap: 12px;
+}
+
+.dx-wl {
+  display: grid;
+  gap: 14px;
+}
+
+.dx-wl__count {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--dx-sub);
+}
+
+.dx-wl__bar {
+  display: flex;
+  gap: 3px;
+  height: 10px;
+}
+
+.dx-wl__bar i {
+  display: block;
+  border-radius: 10px;
+}
+
+.dx-wl__list li {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--dx-line);
+}
+
+.dx-wl__list li:last-child {
+  border-bottom: 0;
+  padding-bottom: 2px;
+}
+
+.dx-wl__main {
+  flex: 1;
+  min-width: 0;
+}
+
+.dx-wl__main b {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.94rem;
+}
+
+.dx-wl__main em {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #dbe6ff;
+  font-size: 0.64rem;
+  font-style: normal;
+  font-weight: 700;
+  color: var(--dx-blue);
+}
+
+.dx-wl__main small,
+.dx-wl__end small {
+  display: block;
+  font-size: 0.74rem;
+  color: var(--dx-sub);
+}
+
+.dx-wl__end {
+  text-align: right;
+}
+
+.dx-wl__end b {
+  display: block;
+  font-size: 0.94rem;
+}
+
+.dx-wl__end small {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dx-wl__end small i {
+  width: 8px;
+  height: 8px;
+  border-radius: 3px;
+}
+
+.dx-wl__go {
+  flex: none;
+  font-size: 1.3rem;
+  color: #a9b6d6;
+}
+
+@media (max-width: 860px) {
+  .dx-wm {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 18px;
+  }
+}
+
+/* Tighter total-balance block */
+.dx-wm__left { gap: 6px; }
+.dx-wm__top strong { margin-top: 2px; line-height: 1; }
+.dx-wm__top small { margin-bottom: 0; }
+.dx-wm__left .dx-wal__spark { height: 60px; margin-top: 0; }
+
+/* Percentage boxes in each wallet row, tinted with that wallet's colour */
+.dx-pct {
+  display: inline-block;
+  padding: 3px 9px;
+  border-radius: 8px;
+  background: color-mix(in srgb, var(--c) 16%, transparent);
+  font-size: 0.74rem;
+  font-style: normal;
+  font-weight: 700;
+  color: var(--c);
+}

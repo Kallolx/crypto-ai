@@ -5,8 +5,39 @@ import { stats } from "@/data/content";
 import { site } from "@/config/site";
 import "./Stats.css";
 
-const assets = ["BTC", "ETH", "BNB", "SOL", "USDT", "XRP", "ADA", "LINK", "EUR", "GBP", "JPY"];
-const names = { BTC: "Bitcoin", ETH: "Ethereum", BNB: "BNB", SOL: "Solana", USDT: "Tether", XRP: "XRP", ADA: "Cardano", LINK: "Chainlink", EUR: "Euro", GBP: "Pound", JPY: "Yen" };
+const assets = [
+  "BTC",
+  "ETH",
+  "BNB",
+  "SOL",
+  "USDT",
+  "XRP",
+  "ADA",
+  "LINK",
+  "EUR",
+  "GBP",
+  "JPY",
+];
+const names = {
+  BTC: "Bitcoin",
+  ETH: "Ethereum",
+  BNB: "BNB",
+  SOL: "Solana",
+  USDT: "Tether",
+  XRP: "XRP",
+  ADA: "Cardano",
+  LINK: "Chainlink",
+  EUR: "Euro",
+  GBP: "Pound",
+  JPY: "Yen",
+};
+
+const assetItems = assets.map((a) => (
+  <span className="assets__item" key={a}>
+    <CoinIcon symbol={a} size={30} />
+    {names[a]}
+  </span>
+));
 
 export default function Stats() {
   return (
@@ -16,23 +47,28 @@ export default function Stats() {
           <GlassCard className="stats">
             {stats.map((s) => (
               <div className="stats__item" key={s.label}>
-                <Amount className="stats__value text-gradient" to={s.value} prefix={s.prefix} suffix={s.suffix} decimals={s.decimals} />
+                <Amount
+                  className="stats__value text-gradient"
+                  to={s.value}
+                  prefix={s.prefix}
+                  suffix={s.suffix}
+                  decimals={s.decimals}
+                />
                 <span className="stats__label">{s.label}</span>
               </div>
             ))}
           </GlassCard>
         </div>
-        <p className="stats__note">Figures reported by {site.name}. Signal accuracy is a win-rate measure, not a measure of profitability.</p>
 
         <div className="assets">
           <span className="assets__title">Markets the engine trades</span>
-          <div className="assets__track">
-            {assets.map((a) => (
-              <span className="assets__item" key={a}>
-                <CoinIcon symbol={a} size={30} />
-                {names[a]}
-              </span>
-            ))}
+          <div className="assets__viewport">
+            <div className="assets__track">
+              <div className="assets__group">{assetItems}</div>
+              <div className="assets__group" aria-hidden="true">
+                {assetItems}
+              </div>
+            </div>
           </div>
         </div>
       </div>

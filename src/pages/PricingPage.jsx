@@ -1,7 +1,6 @@
 import { RiInformationLine } from "react-icons/ri";
 import PageHero from "@/sections/PageHero/PageHero";
 import PricingPlans from "@/sections/Pricing/PricingPlans";
-import Calculator from "@/sections/Calculator/Calculator";
 import CTA from "@/sections/CTA/CTA";
 import SectionHeading from "@/components/ui/SectionHeading/SectionHeading";
 import GlassCard from "@/components/ui/GlassCard/GlassCard";
@@ -23,8 +22,6 @@ export default function PricingPage() {
           <PricingPlans />
         </div>
       </section>
-
-      <Calculator />
 
       <section className="section" id="terms">
         <div className="container">

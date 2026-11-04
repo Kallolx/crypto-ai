@@ -31,7 +31,7 @@ export default function SignIn() {
     await signIn({ ...form, remember });
     setLoading(false);
     setDone(true);
-    setTimeout(() => navigate("/dashboard"), 1200);
+    setTimeout(() => navigate("/dashboard-v2"), 1200);
   };
 
   return (

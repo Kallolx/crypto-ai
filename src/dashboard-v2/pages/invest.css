@@ -1,0 +1,306 @@
+/* ================= Investments: list bar, details, picker, flow ================= */
+.dx-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dx-bar .dx-tabs {
+  flex: 1;
+  min-width: 0;
+}
+
+.dx-bar .dp-btn {
+  flex: none;
+  white-space: nowrap;
+}
+
+.dp-block {
+  display: flex;
+  width: 100%;
+}
+
+.dx-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  width: fit-content;
+  font-size: 0.86rem;
+  font-weight: 600;
+  color: var(--dx-blue);
+}
+
+.dx-lead {
+  font-size: 0.9rem;
+  color: var(--dx-sub);
+}
+
+.dx-live {
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #d6f5e8;
+  font-size: 0.64rem;
+  font-style: normal;
+  font-weight: 700;
+  color: #047857;
+  vertical-align: 2px;
+}
+
+/* Links styled inside plan card footers */
+.dx-pc__foot a {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--dx-blue);
+}
+
+.dx-pc__foot a.dx-btn {
+  color: #fff;
+}
+
+.dx-pd {
+  display: grid;
+  gap: 16px;
+  padding: 20px;
+}
+
+.dx-pd h2 {
+  font-size: 1.2rem;
+}
+
+.dx-pd__body {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 18px;
+}
+
+.dx-pd__stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+  margin: 0;
+}
+
+.dx-pd__stats div {
+  padding: 9px 12px;
+  border-radius: 12px;
+  background: var(--dx-soft);
+}
+
+.dx-pd__stats dt {
+  font-size: 0.7rem;
+  color: var(--dx-sub);
+}
+
+.dx-pd__stats dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+.dx-checks {
+  display: grid;
+  gap: 10px;
+}
+
+.dx-checks li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.88rem;
+}
+
+.dx-checks svg {
+  flex: none;
+  margin-top: 2px;
+  color: var(--dx-blue);
+}
+
+.dx-tl {
+  display: grid;
+  gap: 0;
+}
+
+.dx-tl li {
+  position: relative;
+  display: flex;
+  gap: 12px;
+  padding-bottom: 18px;
+}
+
+.dx-tl li:last-child { padding-bottom: 0; }
+
+.dx-tl li:not(:last-child)::before {
+  content: "";
+  position: absolute;
+  top: 18px;
+  bottom: 0;
+  left: 8px;
+  width: 2px;
+  background: var(--dx-line);
+}
+
+.dx-tl li.is-done:not(:last-child)::before { background: var(--dx-blue); }
+
+.dx-tl i {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--dx-line);
+  border-radius: 50%;
+  background: #fff;
+}
+
+.dx-tl li.is-done i {
+  border-color: var(--dx-blue);
+  background: var(--dx-blue);
+}
+
+.dx-tl b { display: block; font-size: 0.9rem; }
+.dx-tl small { font-size: 0.76rem; color: var(--dx-sub); }
+
+.dx-faq {
+  display: grid;
+}
+
+.dx-faq > div {
+  border-top: 1px solid var(--dx-line);
+}
+
+.dx-faq > div:first-child { border-top: 0; }
+
+.dx-faq button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  width: 100%;
+  padding: 14px 0;
+  text-align: left;
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.dx-faq button svg {
+  flex: none;
+  color: var(--dx-blue);
+  transition: transform 0.25s;
+}
+
+.dx-faq .is-open button svg { transform: rotate(45deg); }
+
+.dx-faq p {
+  padding-bottom: 14px;
+  font-size: 0.86rem;
+  color: var(--dx-sub);
+}
+
+/* Flow stepper */
+.dx-steps2 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.dx-steps2 li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-radius: 14px;
+  background: rgba(29, 78, 216, 0.06);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--dx-sub);
+  transition: background 0.3s, color 0.3s;
+}
+
+.dx-steps2 li.is-on {
+  background: #dbe6ff;
+  color: var(--dx-blue);
+}
+
+.dx-steps2 b {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  font-size: 0.74rem;
+}
+
+.dx-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.86rem;
+  cursor: pointer;
+}
+
+.dx-check input { position: absolute; opacity: 0; pointer-events: none; }
+
+.dx-check > span {
+  display: grid;
+  place-items: center;
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid #c7d3ee;
+  border-radius: 7px;
+  background: #fff;
+  color: transparent;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.dx-check input:checked + span {
+  border-color: transparent;
+  background: linear-gradient(135deg, #3b7bff, #1d4ed8);
+  color: #fff;
+}
+
+.dx-flowacts {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.dx-flowacts .dx-btn { min-width: 140px; }
+
+/* Portfolio top card */
+.dx-pf {
+  display: grid;
+  gap: 14px;
+  padding: 20px;
+}
+
+.dx-pf strong {
+  display: block;
+  margin-top: 2px;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.dx-pf .dx-chip { justify-self: start; }
+.dx-pf__bar { height: 10px; }
+
+@media (max-width: 860px) {
+  .dx-pd__body { grid-template-columns: minmax(0, 1fr); justify-items: center; }
+  .dx-pd__stats { width: 100%; }
+}
+
+/* Back link (and intro) sits in its own card so it never collides with the header curve */
+.dx-backbar {
+  display: grid;
+  gap: 6px;
+  padding: 14px 16px;
+}
+
+.dx-backbar .dx-lead {
+  margin: 0;
+}

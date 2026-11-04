@@ -46,12 +46,6 @@ export default function Footer() {
         <div className="footer__wordmark" aria-hidden="true">{site.name}</div>
 
         <div className="footer__legal">
-          <p>
-            <strong>Risk warning:</strong> Trading cryptocurrencies and foreign exchange carries a high level of risk and may not be suitable
-            for all investors. Advertised rates are targets, not guarantees, and past performance does not indicate future results. You may
-            lose some or all of your invested capital. {site.token.symbol} is a utility token and does not represent equity or a claim on
-            platform profits. Not available to residents of the {site.restricted}.
-          </p>
           <div className="footer__bottom">
             <span>© {new Date().getFullYear()} {site.company} · {site.domain}</span>
             <span>{site.email}</span>

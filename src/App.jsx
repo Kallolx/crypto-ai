@@ -14,6 +14,7 @@ import ForgotPassword from "@/pages/auth/ForgotPassword";
 
 // Investor area (sidebar layout + charts) loads only when visited
 const DashboardApp = lazy(() => import("@/app/DashboardApp"));
+const DashboardV2 = lazy(() => import("@/dashboard-v2/DashboardApp"));
 
 // Auth screens skip the footer; the dashboard has its own header and sidebar
 const AUTH_PATHS = ["/login", "/signup", "/forgot-password"];
@@ -39,6 +40,7 @@ export default function App() {
           <Route path="/terms" element={<LegalPage doc="terms" />} />
           <Route path="/privacy" element={<LegalPage doc="privacy" />} />
           <Route path="/risk" element={<LegalPage doc="risk" />} />
+          <Route path="/dashboard-v2/*" element={<Suspense fallback={null}><DashboardV2 /></Suspense>} />
           <Route path="/dashboard/*" element={<Suspense fallback={null}><DashboardApp /></Suspense>} />
           <Route path="*" element={<Home />} />
         </Routes>

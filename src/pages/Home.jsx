@@ -17,9 +17,17 @@ export default function Home() {
       <Hero />
       <Stats />
       <Products />
-      <HowItWorks />
       <Pricing />
-      <Suspense fallback={<section className="section" id="dashboard" style={{ minHeight: 900 }} />}>
+      <HowItWorks />
+      <Suspense
+        fallback={
+          <section
+            className="section"
+            id="dashboard"
+            style={{ minHeight: 500 }}
+          />
+        }
+      >
         <Dashboard />
       </Suspense>
       <Security />

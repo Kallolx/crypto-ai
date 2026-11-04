@@ -14,11 +14,14 @@ export const allocation = [
 ];
 
 export const transactions = [
-  { type: "Daily distribution", asset: "USDT", amount: 92.4, status: "Credited", date: "Nov 01, 09:00" },
-  { type: "Team bonus", asset: "USDT", amount: 38.15, status: "Credited", date: "Oct 31, 18:42" },
-  { type: "Withdrawal", asset: "USDT", amount: -250, status: "Processing", date: "Oct 31, 11:20" },
-  { type: "Token purchase", asset: "CAI", amount: 21200, status: "Completed", date: "Oct 30, 15:03" },
-  { type: "Deposit", asset: "USDT", amount: 5000, status: "Confirmed", date: "Oct 29, 10:47" },
+  { type: "Daily distribution", asset: "USDT", amount: 92.4, status: "Credited", date: "Just now", isNew: true },
+  { type: "Team bonus", asset: "USDT", amount: 38.15, status: "Credited", date: "18 min ago", isNew: true },
+  { type: "Withdrawal", asset: "USDT", amount: -250, status: "Processing", date: "Today, 11:20" },
+  { type: "Token purchase", asset: "CAI", amount: 21200, status: "Completed", date: "Yesterday, 15:03" },
+  { type: "Deposit", asset: "USDT", amount: 5000, status: "Confirmed", date: "Yesterday, 10:47" },
+  { type: "Staking reward", asset: "CAI", amount: 840, status: "Credited", date: "Oct 28, 09:30" },
+  { type: "Affiliate reward", asset: "USDT", amount: 64.8, status: "Credited", date: "Oct 27, 16:12" },
+  { type: "Pool allocation", asset: "USDT", amount: 1200, status: "Completed", date: "Oct 26, 13:06" },
 ];
 
 export const dashNav = ["Dashboard", "Investment", "Deposit", "Withdraw", "Team", "Transfer", "Reports", "Staking"];
